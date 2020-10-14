@@ -1,0 +1,4 @@
+# Inflexões a excluir
+
+# Exemplo:
+# Norte=norte

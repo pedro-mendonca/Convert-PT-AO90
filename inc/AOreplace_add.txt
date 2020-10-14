@@ -1,0 +1,33 @@
+# Inflexões adicionais dos meses do ano, estações do ano e pontos cardeais pré e pós Acordo
+# Sources:
+# http://www.portaldalinguaportuguesa.org/index.php?action=vop&&page=crit1
+
+# Meses do ano
+Janeiro=janeiro
+Fevereiro=fevereiro
+Março=março
+Abril=abril
+Maio=maio
+Junho=junho
+Julho=julho
+Agosto=agosto
+Setembro=setembro
+Outubro=outubro
+Novembro=novembro
+Dezembro=dezembro
+
+# Estações do ano
+Inverno=inverno
+Primavera=primavera
+Verão=verão
+Outuno=outono
+
+# Nome dos pontos cardeais
+Norte=norte
+Nordeste=nordeste
+Este=este
+Sudeste=sudeste
+Sul=sul
+Sudoeste=sudoeste
+Oeste=oeste
+Noroeste=noroeste
