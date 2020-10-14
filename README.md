@@ -7,7 +7,7 @@ Open source language tool to convert Portuguese to AO90
 
 1. Add this package to your folder.
 
-2. Include the main file in your project.
+2. Include the folder in your project.
 ```
 /**
  * Require Convert-PT-AO90.
