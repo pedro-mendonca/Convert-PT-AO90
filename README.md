@@ -12,7 +12,7 @@ Open source language tool to convert Portuguese to AO90
 /**
  * Require Convert-PT-AO90.
  */
-require_once 'convert-pt-ao90.php';
+require_once 'convert-pt-ao90/convert-pt-ao90.php';
 ```
 
 ## Usage
