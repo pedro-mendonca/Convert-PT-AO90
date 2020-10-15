@@ -40,6 +40,9 @@ require_once 'convert-pt-ao90.php';
 function convert_sentences() {
 
 	$texts = array(
+		'Palavra',
+		'Janeiro.',
+		'Acção :-) com <a href="https://pt.wordpress.org/">ligação</a>.',
 		'Não me pélo pelo pêlo de quem pára para resistir!',
 		'Alto e pára o baile!',
 		'Janeiro é uma altura óptima do ano para Fulano, Beltrano e Sicrano...',
