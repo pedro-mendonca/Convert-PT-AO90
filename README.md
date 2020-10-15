@@ -41,5 +41,8 @@ echo $string_ao90;
 
 ## Changelog ##
 
+### 1.0.1 ###
+*   Add Composer install support.
+
 ### 1.0.0 ###
 *   Initial release.
