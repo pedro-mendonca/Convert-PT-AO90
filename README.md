@@ -13,12 +13,12 @@
 Open source language tool to convert Portuguese to AO90
 
 ## Installation instructions
-Installation can be done with [composer], by requiring this package as a dependency:
+Installation can be done with [Composer](https://getcomposer.org/), by requiring this package as a dependency:
 
 ```
 composer require pedro-mendonca/convert-pt-ao90
 ```
-If you don't use [composer], you can **install manually** by downloading the [latest release](https://github.com/pedro-mendonca/Convert-PT-AO90/releases/latest), add it to your project folder and *include* the main file in your code:
+If you don't use [Composer](https://getcomposer.org/), you can **install manually** by downloading the [latest release](https://github.com/pedro-mendonca/Convert-PT-AO90/releases/latest), add it to your project folder and **include** the main file in your code:
 ```
 /**
  * Require Convert-PT-AO90.
