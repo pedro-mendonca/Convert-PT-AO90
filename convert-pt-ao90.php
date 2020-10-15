@@ -194,6 +194,8 @@ function get_replace_pairs() {
  */
 function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) {
 
+	$filename = __DIR__ . DIRECTORY_SEPARATOR . $filename;
+
 	if ( ! file_exists( $filename ) || ! is_readable( $filename ) ) {
 		return false;
 	}
