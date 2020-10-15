@@ -15,3 +15,4 @@ parameters:
 	excludes_analyse:
 		# Dependencies
 		- %currentWorkingDirectory%/vendor/*
+		- %currentWorkingDirectory%/node_modules/*

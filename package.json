@@ -1,0 +1,30 @@
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {},
+  "name": "convert-pt-ao90",
+  "description": "Open source language tool to convert Portuguese to AO90.",
+  "devDependencies": {
+    "npm-check-updates": "^9.0.4",
+    "remark-lint": "^7.0.1",
+    "remark-preset-lint-recommended": "^4.0.1"
+  },
+  "scripts": {
+    "update": "npm-check-updates"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedro-mendonca/Convert-PT-AO90.git"
+  },
+  "keywords": [
+    "WordPress",
+    "i18n",
+    "l10n"
+  ],
+  "author": "Pedro Mendonça",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/pedro-mendonca/Convert-PT-AO90/issues"
+  },
+  "homepage": "https://github.com/pedro-mendonca/Convert-PT-AO90#readme"
+}

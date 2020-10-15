@@ -1,4 +1,4 @@
-# Convert PT AO90
+# Convert PT AO90 #
 
 [![GitHub version](https://img.shields.io/github/v/release/pedro-mendonca/Convert-PT-AO90?logo=github)](https://github.com/pedro-mendonca/Convert-PT-AO90/releases)
 [![License](https://img.shields.io/github/license/pedro-mendonca/Convert-PT-AO90)](https://opensource.org/licenses/GPL-3.0)
@@ -9,10 +9,10 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cbdc5b23059143879de61527501ba199)](https://app.codacy.com/gh/pedro-mendonca/Convert-PT-AO90?utm_source=github.com&utm_medium=referral&utm_content=pedro-mendonca/Convert-PT-AO90&utm_campaign=Badge_Grade)
 [![PHPStan Level](https://img.shields.io/badge/PHPStan%20Level-Max-brightgreen)](https://travis-ci.org/pedro-mendonca/Convert-PT-AO90)
 
-## Description
+## Description ##
 Open source language tool to convert Portuguese to AO90
 
-## Installation instructions
+## Installation instructions ##
 Installation can be done with [Composer](https://getcomposer.org/), by requiring this package as a dependency:
 
 ```
@@ -26,7 +26,7 @@ If you don't use [Composer](https://getcomposer.org/), you can **install manuall
 require_once 'convert-pt-ao90/convert-pt-ao90.php';
 ```
 
-## Usage
+## Usage ##
 
 Examples:
 
