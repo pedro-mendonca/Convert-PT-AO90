@@ -51,9 +51,57 @@ function convert_sentences() {
 		'Teste de dois pontos: Junho é quando começa o Verão! Acção na primeira palavra da frase. Encontrar uma acção em Abril.  Dois espaços antes? Abril e Janeiro são meses. A.C. é antes de cristo. Nunca mais chega o Verão?! Espero que não demore... Fim',
 	);
 
-	Convert_PT_AO90\convert_diff_table( $texts );
+	convert_diff_table( $texts );
 }
 convert_sentences();
+
+
+
+
+/**
+ * Show comparative table with 2 columns:
+ *  - Forma do Acordo Ortográfico de 1945
+ *  - Palavras alteradas pelo Acordo Ortográfico de 1990
+ *
+ * @since 1.0.0
+ *
+ * @param array<int,string> $texts   Array of texts do convert to Portuguese AO90.
+ *
+ * @return void
+ */
+function convert_diff_table( $texts = null ) {
+
+	if ( null === $texts ) {
+		return;
+	}
+
+	?>
+	<style>
+	td.left {
+		background-color: rgba(255,0,0,.1);
+	}
+	td.right {
+		background-color: rgba(0,255,0,.1);
+	}
+	</style>
+	<table>
+		<tr>
+			<th>Português pré-AO90</th>
+			<th>Português pós-AO90</th>
+		</tr>
+		<?php
+		foreach ( $texts as $text ) {
+			?>
+			<tr>
+				<td class="left"><?php echo $text; ?></td>
+				<td class="right"><?php echo Convert_PT_AO90\convert_pt_ao90( $text ); ?></td>
+			</tr>
+			<?php
+		}
+		?>
+	</table>
+	<?php
+}
 
 
 /**
@@ -63,4 +111,33 @@ convert_sentences();
  *
  * @return void
  */
-Convert_PT_AO90\conversion_table_replace_pairs();
+function conversion_table_replace_pairs() {
+
+	$replace_pairs = Convert_PT_AO90\get_replace_pairs();
+
+	if ( ! $replace_pairs ) {
+		return;
+	}
+
+	?>
+	<h2>Tabela de conversão de português AO90</h2>
+	<h3>Geral (<?php echo count( $replace_pairs['general']['original'] ); ?>)</h3>
+	<div>
+		<pre>
+			<?php
+			echo print_r( $replace_pairs['general'], true );
+			?>
+		</pre>
+
+	</div>
+	<h3>Alteração de maiúsculas (<?php echo count( $replace_pairs['case_change']['original'] ); ?>)</h3>
+	<div>
+		<pre>
+			<?php
+			echo print_r( $replace_pairs['case_change'], true );
+			?>
+		</pre>
+	</div>
+	<?php
+}
+conversion_table_replace_pairs();
