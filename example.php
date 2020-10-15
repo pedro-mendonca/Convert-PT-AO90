@@ -31,31 +31,19 @@ require_once 'convert-pt-ao90.php';
 
 
 /**
- * Show table with example of sentences to test the conversion.
- *
- * @since 1.0.0
- *
- * @return void
+ * Sentences examples to test the conversion in convert_diff_table().
  */
-function convert_sentences() {
-
-	$texts = array(
-		'Palavra',
-		'Janeiro.',
-		'Acção :-) com <a href="https://pt.wordpress.org/">ligação</a>.',
-		'Não me pélo pelo pêlo de quem pára para resistir!',
-		'Alto e pára o baile!',
-		'Janeiro é uma altura óptima do ano para Fulano, Beltrano e Sicrano...',
-		'Acção na primeira palavra da frase.',
-		'Acções na primeira palavra da frase e acções no resto da frase.',
-		'Teste de dois pontos: Junho é quando começa o Verão! Acção na primeira palavra da frase. Encontrar uma acção em Abril.  Dois espaços antes? Abril e Janeiro são meses. A.C. é antes de cristo. Nunca mais chega o Verão?! Espero que não demore... Fim',
-	);
-
-	convert_diff_table( $texts );
-}
-convert_sentences();
-
-
+$texts = array(
+	'Palavra',
+	'Janeiro.',
+	'Acção :-) com <a href="https://pt.wordpress.org/">ligação</a>.',
+	'Não me pélo pelo pêlo de quem pára para resistir!',
+	'Alto e pára o baile!',
+	'Janeiro é uma altura óptima do ano para Fulano, Beltrano e Sicrano...',
+	'Acção na primeira palavra da frase.',
+	'Acções na primeira palavra da frase e acções no resto da frase.',
+	'Teste de dois pontos: Junho é quando começa o Verão! Acção na primeira palavra da frase. Encontrar uma acção em Abril.  Dois espaços antes? Abril e Janeiro são meses. A.C. é antes de cristo. Nunca mais chega o Verão?! Espero que não demore... Fim',
+);
 
 
 /**
@@ -102,6 +90,7 @@ function convert_diff_table( $texts = null ) {
 	</table>
 	<?php
 }
+convert_diff_table( $texts );
 
 
 /**
