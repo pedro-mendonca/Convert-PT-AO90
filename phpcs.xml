@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="GP Portuguese AO90">
+<ruleset name="Convert PT AO90">
 	<description>A custom set of PHPCS rules for Convert PT AO90.</description>
 
 	<!-- Files to check. -->
