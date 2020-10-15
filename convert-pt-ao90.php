@@ -62,7 +62,7 @@ function convert_pt_ao90( $text = null ) {
 	}
 
 	// Loop sentences in reverse order to allow the position to work.
-	foreach ( array_reverse( $sentences ) as $key => $sentence ) {
+	foreach ( array_reverse( $sentences ) as $sentence ) {
 
 		// Separate sentece by words.
 		$words = explode( ' ', trim( $sentence[0] ) );
