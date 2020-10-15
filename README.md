@@ -1,6 +1,7 @@
 # Convert PT AO90 #
 
-[![GitHub version](https://img.shields.io/github/v/release/pedro-mendonca/Convert-PT-AO90?logo=github)](https://github.com/pedro-mendonca/Convert-PT-AO90/releases)
+[![Packagist version](https://img.shields.io/packagist/v/pedro-mendonca/Convert-PT-AO90)](https://packagist.org/packages/pedro-mendonca/convert-pt-ao90)
+[![Release Date](https://img.shields.io/github/release-date/pedro-mendonca/Convert-PT-AO90)](https://github.com/pedro-mendonca/Convert-PT-AO90/releases)
 [![License](https://img.shields.io/github/license/pedro-mendonca/Convert-PT-AO90)](https://opensource.org/licenses/GPL-3.0)
 [![PHP from Travis config](https://img.shields.io/travis/php-v/pedro-mendonca/Convert-PT-AO90/main.svg?logoColor=white&label=PHP%20Required&logo=php)](https://travis-ci.org/pedro-mendonca/Convert-PT-AO90)
 [![Sponsor](https://img.shields.io/badge/GitHub-🤍%20Sponsor-ea4aaa?logo=github)](https://github.com/sponsors/pedro-mendonca)
