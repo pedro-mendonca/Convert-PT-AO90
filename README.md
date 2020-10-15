@@ -1,6 +1,8 @@
 # Convert PT AO90
 
+[![Build Status](https://img.shields.io/travis/pedro-mendonca/convert-pt-ao90?label=Build&logo=travis)](https://travis-ci.org/pedro-mendonca/Convert-PT-AO90)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cbdc5b23059143879de61527501ba199)](https://app.codacy.com/gh/pedro-mendonca/Convert-PT-AO90?utm_source=github.com&utm_medium=referral&utm_content=pedro-mendonca/Convert-PT-AO90&utm_campaign=Badge_Grade)
+[![PHPStan Level](https://img.shields.io/badge/PHPStan%20Level-Max-brightgreen)](https://travis-ci.org/pedro-mendonca/Convert-PT-AO90)
 
 ## Description
 Open source language tool to convert Portuguese to AO90
