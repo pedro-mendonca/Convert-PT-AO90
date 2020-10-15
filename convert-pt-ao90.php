@@ -33,11 +33,19 @@ namespace Convert_PT_AO90;
  *
  * @param string $text   Text to convert.
  *
- * @return string   Text converted to Portuguese AO90.
+ * @return string|false   Text converted to Portuguese AO90. Return false if no $text or no replace_pairs.
  */
-function convert_pt_ao90( $text ) {
+function convert_pt_ao90( $text = null ) {
+
+	if ( null === $text ) {
+		return false;
+	}
 
 	$replace_pairs = get_replace_pairs();
+
+	if ( ! $replace_pairs ) {
+		return false;
+	}
 
 	/**
 	 * Convert words that changed from uppercase to lowercase, except the first word on each sentence.
@@ -45,11 +53,16 @@ function convert_pt_ao90( $text ) {
 	// Set the delimiters used to separate sentences.
 	$delimiters = '/([.?!:])\s+\b/';
 
-	// Separate in sentences.
+	// Separate in sentences. Returns false if preg_split do not split the string.
 	$sentences = preg_split( $delimiters, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
 
+	// Check if split failed.
+	if ( false === $sentences ) {
+		return false;
+	}
+
 	// Loop sentences in reverse order to allow the position to work.
-	foreach ( array_reverse( $sentences ) as $key => $sentence ) {
+	foreach ( array_reverse( $sentences ) as $sentence ) {
 
 		// Separate sentece by words.
 		$words = explode( ' ', trim( $sentence[0] ) );
@@ -60,7 +73,7 @@ function convert_pt_ao90( $text ) {
 		}
 
 		// Sentence ending.
-		$sentence_ending_pos = $sentence[1] + strlen( $words[0] . ' ' );
+		$sentence_ending_pos = intval( $sentence[1] ) + strlen( $words[0] . ' ' );
 		$sentence_ending_len = strlen( $sentence[0] ) - strlen( $words[0] . ' ' );
 		$sentence_ending     = substr( $sentence[0], strlen( $words[0] . ' ' ) );
 
@@ -96,7 +109,7 @@ function convert_pt_ao90( $text ) {
  *
  * @since 1.0.0
  *
- * @return array   Multi-dimensional array replace pairs with both types 'general' and 'case-change'.
+ * @return array<string|int,mixed>|false   Multi-dimensional array replace pairs with both types 'general' and 'case-change'. Return false ir files not found.
  */
 function get_replace_pairs() {
 
@@ -107,17 +120,23 @@ function get_replace_pairs() {
 		'#'   // Row comment character.
 	);
 
+	// Import AOreplace file with aditional custom items.
 	$file_additional = csv_to_array(
 		'inc/AOreplace_add.txt',
 		'=',  // Delimiter.
 		'#'   // Row comment character.
 	);
 
+	// Import AOreplace file with items to exclude.
 	$file_remove = csv_to_array(
 		'inc/AOreplace_remove.txt',
 		'=',  // Delimiter.
 		'#'   // Row comment character.
 	);
+
+	if ( ! $file_main || ! $file_additional || ! $file_remove ) {
+		return false;
+	}
 
 	$files = array_merge( $file_main['data'], $file_additional['data'] );
 
@@ -126,6 +145,9 @@ function get_replace_pairs() {
 	$replace_pairs = array_diff( $files, $intersect );
 
 	foreach ( $replace_pairs as $key => $replace_pair ) {
+
+		// Make sure that $key is always a string.
+		$key = strval( $key );
 
 		// Check if starts with the same letter but case has changed.
 		if ( strtolower( substr( $key, 0, 1 ) ) === strtolower( substr( $replace_pair, 0, 1 ) ) && substr( $key, 0, 1 ) !== substr( $replace_pair, 0, 1 ) ) {
@@ -168,12 +190,11 @@ function get_replace_pairs() {
  * @param string $delimiter       The separator used in the file.
  * @param string $comment_start   The character used to comment the row.
  *
- * @return array|false   Associative array of the file Comments and Data. Return false if file not found.
+ * @return array<string,array>|false   Associative array of the file Comments and Data. Return false if file not found.
  */
 function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) {
 
 	if ( ! file_exists( $filename ) || ! is_readable( $filename ) ) {
-		echo 'File not found.';
 		return false;
 	}
 
@@ -186,12 +207,12 @@ function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) 
 
 		while ( false !== ( $row = fgetcsv( $handle, 1000, $delimiter ) ) ) {
 
-			if ( substr( trim( $row[0] ), 0, 1 ) === $comment_start ) { // Check if row is comment.
+			if ( is_array( $row ) && substr( trim( $row[0] ), 0, 1 ) === $comment_start ) { // Check if row is comment.
 
 				// Add full row to comments array.
 				$file_data['comments'][] = implode( $delimiter, $row );
 
-			} elseif ( null !== $row[0] ) { // Check if is not an empty row.
+			} elseif ( is_array( $row ) && null !== $row[0] ) { // Check if is not an empty row.
 
 				// Add lowercase entry.
 				$file_data['data'][ $row[0] ] = $row[1];
@@ -203,80 +224,4 @@ function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) 
 	}
 
 	return $file_data;
-}
-
-
-/**
- * Show comparative table with 2 columns:
- *  - Forma do Acordo Ortográfico de 1945
- *  - Palavras alteradas pelo Acordo Ortográfico de 1990
- *
- * @since 1.0.0
- *
- * @param array $texts   Array of texts do convert to Portuguese AO90.
- *
- * @return void
- */
-function convert_diff_table( $texts = null ) {
-
-	if ( null === $texts ) {
-		return;
-	}
-
-	?>
-	<style>
-	td.left {
-		background-color: rgba(255,0,0,.1);
-	}
-	td.right {
-		background-color: rgba(0,255,0,.1);
-	}
-	</style>
-	<table>
-		<tr>
-			<th>Português pré-AO90</th>
-			<th>Português pós-AO90</th>
-		</tr>
-		<?php
-		foreach ( $texts as $text ) {
-			?>
-			<tr>
-				<td class="left"><?php echo $text; ?></td>
-				<td class="right"><?php echo convert_pt_ao90( $text ); ?></td>
-			</tr>
-			<?php
-		}
-		?>
-	</table>
-	<?php
-}
-
-
-/**
- * Show all the conversion replace pairs by type.
- */
-function conversion_table_replace_pairs() {
-
-	$replace_pairs = get_replace_pairs();
-
-	?>
-	<h2>Tabela de conversão de português AO90</h2>
-	<h3>Geral (<?php echo count( $replace_pairs['general']['original'] ); ?>)</h3>
-	<div>
-		<pre>
-			<?php
-			echo print_r( $replace_pairs['general'], true );
-			?>
-		</pre>
-
-	</div>
-	<h3>Alteração de maiúsculas (<?php echo count( $replace_pairs['case_change']['original'] ); ?>)</h3>
-	<div>
-		<pre>
-			<?php
-			echo print_r( $replace_pairs['case_change'], true );
-			?>
-		</pre>
-	</div>
-	<?php
 }
