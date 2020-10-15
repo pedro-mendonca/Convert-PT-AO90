@@ -14,16 +14,24 @@ Open source language tool to convert Portuguese to AO90
 
 ## Installation instructions ##
 Installation can be done with [Composer](https://getcomposer.org/), by requiring this package as a dependency:
-
 ```
 composer require pedro-mendonca/convert-pt-ao90
 ```
+
+Make sure to include composer autoload in your project:
+```
+/**
+ * Include Composer autoload.
+ */
+require 'vendor/autoload.php';
+```
+
 If you don't use [Composer](https://getcomposer.org/), you can **install manually** by downloading the [latest release](https://github.com/pedro-mendonca/Convert-PT-AO90/releases/latest), add it to your project folder and **include** the main file in your code:
 ```
 /**
- * Require Convert-PT-AO90.
+ * Include Convert-PT-AO90.
  */
-require_once 'convert-pt-ao90/convert-pt-ao90.php';
+require_once '<path-to-folder>/convert-pt-ao90/convert-pt-ao90.php';
 ```
 
 ## Usage ##
@@ -40,6 +48,9 @@ echo $string_ao90;
 2.  See more examples and the complete replace pairs in the file [example.php](https://github.com/pedro-mendonca/Convert-PT-AO90/blob/main/example.php).
 
 ## Changelog ##
+
+### 1.0.2 ###
+*   Fix autoload and library path for package installed as composer dependency.
 
 ### 1.0.1 ###
 *   Add Composer install support.

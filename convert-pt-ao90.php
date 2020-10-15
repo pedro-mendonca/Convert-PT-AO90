@@ -21,7 +21,7 @@
  * @author     Pedro Mendonça
  * @copyright  2020 Pedro Mendonça
  * @license    GPLv3
- * @version    1.0.1
+ * @version    1.0.2
  */
 
 namespace Convert_PT_AO90;
