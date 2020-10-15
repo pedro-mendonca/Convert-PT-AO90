@@ -78,10 +78,10 @@ function convert_pt_ao90( $text = null ) {
 		$sentence_ending     = substr( $sentence[0], strlen( $words[0] . ' ' ) );
 
 		// Convert case changing words from sentence ending.
-		$sentence_ending_ao90_lowercase = str_replace( $replace_pairs['case_change']['original'], $replace_pairs['case_change']['replacement'], $sentence_ending );
+		$sentence_ending_ao90 = str_replace( $replace_pairs['case_change']['original'], $replace_pairs['case_change']['replacement'], $sentence_ending );
 
 		// Convert sentence ending.
-		$text = substr_replace( $text, $sentence_ending_ao90_lowercase, $sentence_ending_pos, $sentence_ending_len );
+		$text = substr_replace( $text, $sentence_ending_ao90, $sentence_ending_pos, $sentence_ending_len );
 
 	}
 
