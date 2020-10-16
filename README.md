@@ -10,7 +10,7 @@
 
 [![Build Status](https://img.shields.io/travis/pedro-mendonca/convert-pt-ao90?label=Build&logo=travis)](https://travis-ci.org/pedro-mendonca/Convert-PT-AO90)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cbdc5b23059143879de61527501ba199)](https://app.codacy.com/gh/pedro-mendonca/Convert-PT-AO90?utm_source=github.com&utm_medium=referral&utm_content=pedro-mendonca/Convert-PT-AO90&utm_campaign=Badge_Grade)
-[![PHPStan Level](https://img.shields.io/badge/PHPStan%20Level-Max-brightgreen)](https://travis-ci.org/pedro-mendonca/Convert-PT-AO90)
+[![PHPStan Level](https://img.shields.io/badge/PHPStan%20Level-Max-brightgreen)](https://github.com/pedro-mendonca/Convert-PT-AO90/blob/main/phpstan.neon#L10)
 
 ## Description ##
 Language tool to convert text according to the [Portuguese Language Orthographic Agreement of 1990](https://en.wikipedia.org/wiki/Portuguese_Language_Orthographic_Agreement_of_1990) ([PT AO90](https://pt.wikipedia.org/wiki/Acordo_Ortogr%C3%A1fico_de_1990))
