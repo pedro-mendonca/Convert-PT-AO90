@@ -13,7 +13,7 @@
 [![PHPStan Level](https://img.shields.io/badge/PHPStan%20Level-Max-brightgreen)](https://travis-ci.org/pedro-mendonca/Convert-PT-AO90)
 
 ## Description ##
-Open source language tool to convert Portuguese to AO90
+Open source tool to convert Portuguese language to the spelling reform of 1990 (AO90).
 
 ## Installation instructions ##
 Installation can be done with [Composer](https://getcomposer.org/), by requiring this package as a dependency:
