@@ -13,7 +13,9 @@
 [![PHPStan Level](https://img.shields.io/badge/PHPStan%20Level-Max-brightgreen)](https://travis-ci.org/pedro-mendonca/Convert-PT-AO90)
 
 ## Description ##
-Open source language tool to convert text according to the [Portuguese Language Orthographic Agreement of 1990](https://en.wikipedia.org/wiki/Portuguese_Language_Orthographic_Agreement_of_1990) ([PT AO90](https://pt.wikipedia.org/wiki/Acordo_Ortogr%C3%A1fico_de_1990))
+Language tool to convert text according to the [Portuguese Language Orthographic Agreement of 1990](https://en.wikipedia.org/wiki/Portuguese_Language_Orthographic_Agreement_of_1990) ([PT AO90](https://pt.wikipedia.org/wiki/Acordo_Ortogr%C3%A1fico_de_1990))
+
+Language tool to convert text according to the [Portuguese Language Orthographic Agreement of 1990](https://en.wikipedia.org/wiki/Portuguese_Language_Orthographic_Agreement_of_1990) ([PT AO90](https://pt.wikipedia.org/wiki/Acordo_Ortogr%C3%A1fico_de_1990))
 
 ## Installation instructions ##
 Installation can be done with [Composer](https://getcomposer.org/), by requiring this package as a dependency:
