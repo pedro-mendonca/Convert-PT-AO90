@@ -16,7 +16,7 @@
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
     "wp-coding-standards/wpcs": "^2.3.0",
     "phpcompatibility/phpcompatibility-wp": "^2.1.0",
-    "szepeviktor/phpstan-wordpress": "^0.7.0"
+    "szepeviktor/phpstan-wordpress": "^1.0.1"
   },
   "config": {
     "optimize-autoloader": true
