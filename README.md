@@ -58,6 +58,13 @@ Examples:
 
 ## Changelog
 
+### 1.0.3
+
+*   Move CI to GitHub Actions.
+*   Bump PHPStan Level to 9.
+*   Add Markdownlint and PHPMD.
+*   Fix coding standards.
+
 ### 1.0.2
 
 *   Fix autoload and library path for package installed as composer dependency.
