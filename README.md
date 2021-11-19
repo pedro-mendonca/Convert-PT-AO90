@@ -2,15 +2,15 @@
 
 # Convert PT AO90
 
-[![Packagist version](https://img.shields.io/packagist/v/pedro-mendonca/Convert-PT-AO90)](https://packagist.org/packages/pedro-mendonca/convert-pt-ao90)
-[![Release Date](https://img.shields.io/github/release-date/pedro-mendonca/Convert-PT-AO90)](https://github.com/pedro-mendonca/Convert-PT-AO90/releases)
-[![License](https://img.shields.io/github/license/pedro-mendonca/Convert-PT-AO90)](https://opensource.org/licenses/GPL-3.0)
-[![PHP from Travis config](https://img.shields.io/travis/php-v/pedro-mendonca/Convert-PT-AO90/main.svg?logoColor=white&label=PHP%20Required&logo=php)](https://travis-ci.org/pedro-mendonca/Convert-PT-AO90)
+[![Packagist version](https://img.shields.io/packagist/v/pedro-mendonca/Convert-PT-AO90?label=Packagist)](https://packagist.org/packages/pedro-mendonca/convert-pt-ao90)
+[![Release Date](https://img.shields.io/github/release-date/pedro-mendonca/Convert-PT-AO90?label=Release%20Date)](https://github.com/pedro-mendonca/Convert-PT-AO90/releases)
+[![License](https://img.shields.io/github/license/pedro-mendonca/Convert-PT-AO90?label=License)](https://opensource.org/licenses/GPL-3.0)
+[![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/pedro-mendonca/convert-pt-ao90?label=PHP%20Required&logo=PHP&logoColor=white)](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/php-compatibility.yml)
 [![Sponsor](https://img.shields.io/badge/GitHub-🤍%20Sponsor-ea4aaa?logo=github)](https://github.com/sponsors/pedro-mendonca)
 
-[![Build Status](https://img.shields.io/travis/com/pedro-mendonca/Convert-PT-AO90?label=Build&logo=travis)](https://travis-ci.com/github/pedro-mendonca/Convert-PT-AO90)
+[![Coding Standards](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/coding-standards.yml/badge.svg)](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/coding-standards.yml)
+[![Static Analysis](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/static-analysis.yml)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cbdc5b23059143879de61527501ba199)](https://app.codacy.com/gh/pedro-mendonca/Convert-PT-AO90?utm_source=github.com&utm_medium=referral&utm_content=pedro-mendonca/Convert-PT-AO90&utm_campaign=Badge_Grade)
-[![PHPStan Level](https://img.shields.io/badge/PHPStan%20Level-9-brightgreen)](https://github.com/pedro-mendonca/Convert-PT-AO90/blob/main/phpstan.neon#L5)
 
 ## Description
 
