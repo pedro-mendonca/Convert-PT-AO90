@@ -109,7 +109,17 @@ function convert_pt_ao90( $text = null ) {
  *
  * @since 1.0.0
  *
- * @return array<string|int,mixed>|false   Multi-dimensional array replace pairs with both types 'general' and 'case-change'. Return false ir files not found.
+ * @return false|array{
+ *             case_change: array{
+ *                 original: array<int, string>,
+ *                 replacement: array<int, string>
+ *             },
+ *             general: array{
+ *                 original: array<int, string>,
+ *                 replacement: array<int, string>
+ *             }
+ *         }
+ *         Multi-dimensional array replace pairs with both types 'general' and 'case_change'. Return false if files not found.
  */
 function get_replace_pairs() {
 
@@ -144,6 +154,17 @@ function get_replace_pairs() {
 
 	$replace_pairs = array_diff( $files, $intersect );
 
+	$result = array(
+		'case_change' => array(
+			'original'    => array(),
+			'replacement' => array(),
+		),
+		'general'     => array(
+			'original'    => array(),
+			'replacement' => array(),
+		),
+	);
+
 	foreach ( $replace_pairs as $key => $replace_pair ) {
 
 		// Make sure that $key is always a string.
@@ -153,27 +174,23 @@ function get_replace_pairs() {
 		if ( strtolower( substr( $key, 0, 1 ) ) === strtolower( substr( $replace_pair, 0, 1 ) ) && substr( $key, 0, 1 ) !== substr( $replace_pair, 0, 1 ) ) {
 
 			// Add item.
-			$replace_pairs['case_change']['original'][]    = $key;
-			$replace_pairs['case_change']['replacement'][] = $replace_pair;
+			$result['case_change']['original'][]    = $key;
+			$result['case_change']['replacement'][] = strval( $replace_pair );
 
 		} else {
 
 			// Add item.
-			$replace_pairs['general']['original'][]    = $key;
-			$replace_pairs['general']['replacement'][] = $replace_pair;
+			$result['general']['original'][]    = $key;
+			$result['general']['replacement'][] = $replace_pair;
 
 			// Duplicate Uppercase item, for sentences first words.
-			$replace_pairs['general']['original'][]    = ucfirst( $key );
-			$replace_pairs['general']['replacement'][] = ucfirst( $replace_pair );
+			$result['general']['original'][]    = ucfirst( $key );
+			$result['general']['replacement'][] = ucfirst( $replace_pair );
 
 		}
-
-		// Remove from main array.
-		unset( $replace_pairs[ $key ] );
-
 	}
 
-	return $replace_pairs;
+	return $result;
 
 }
 
@@ -190,7 +207,11 @@ function get_replace_pairs() {
  * @param string $delimiter       The separator used in the file.
  * @param string $comment_start   The character used to comment the row.
  *
- * @return array<string,array>|false   Associative array of the file Comments and Data. Return false if file not found.
+ * @return false|array{
+ *             comments: array<int, string>,
+ *             data: array<string, string>
+ *         }
+ *         Associative array of the file Comments and Data. Return false if file not found.
  */
 function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) {
 
@@ -217,7 +238,7 @@ function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) 
 			} elseif ( is_array( $row ) && null !== $row[0] ) { // Check if is not an empty row.
 
 				// Add lowercase entry.
-				$file_data['data'][ $row[0] ] = $row[1];
+				$file_data['data'][ strval( $row[0] ) ] = strval( $row[1] );
 
 			}
 		} // End while.
