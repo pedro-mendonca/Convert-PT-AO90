@@ -13,9 +13,7 @@
 	<exclude-pattern>vendor</exclude-pattern>
 	<exclude-pattern>tests</exclude-pattern>
 
-	<rule ref="rulesets/codesize.xml">
-		<exclude name="CyclomaticComplexity"/>
-	</rule>
+	<rule ref="rulesets/codesize.xml"/>
 
 	<rule ref="rulesets/codesize.xml/CyclomaticComplexity">
 		<properties>
@@ -25,28 +23,20 @@
 
 	<rule ref="rulesets/cleancode.xml">
 		<exclude name="ElseExpression"/>
-		<exclude name="StaticAccess"/>
+		<exclude name="IfStatementAssignment"/>
 	</rule>
 
 	<rule ref="rulesets/controversial.xml">
-		<exclude name="CamelCaseClassName"/>
-		<exclude name="CamelCaseMethodName"/>
 		<exclude name="CamelCaseParameterName"/>
-		<exclude name="CamelCasePropertyName"/>
 		<exclude name="CamelCaseVariableName"/>
-		<exclude name="Superglobals"/>
 	</rule>
 
 	<rule ref="rulesets/design.xml">
-		<exclude name="ExitExpression"/>
+		<exclude name="DevelopmentCodeFragment"/>
 	</rule>
 
-	<rule ref="rulesets/naming.xml">
-		<exclude name="LongVariable"/>
-	</rule>
+	<rule ref="rulesets/naming.xml"/>
 
-	<rule ref="rulesets/unusedcode.xml">
-		<exclude name="UnusedFormalParameter"/>
-	</rule>
+	<rule ref="rulesets/unusedcode.xml"/>
 
 </ruleset>
