@@ -33,7 +33,7 @@ require_once 'convert-pt-ao90.php';
 /**
  * Sentences examples to test the conversion in convert_diff_table().
  */
-$texts = array(
+$convert_pt_ao90_texts = array(
 	'Palavra',
 	'Janeiro.',
 	'Acção :-) com <a href="https://pt.wordpress.org/">ligação</a>.',
@@ -57,7 +57,7 @@ $texts = array(
  *
  * @return void
  */
-function convert_diff_table( $texts = null ) {
+function convert_pt_ao90_diff_table( $texts = null ) {
 
 	if ( null === $texts ) {
 		return;
@@ -90,7 +90,7 @@ function convert_diff_table( $texts = null ) {
 	</table>
 	<?php
 }
-convert_diff_table( $texts );
+convert_pt_ao90_diff_table( $convert_pt_ao90_texts );
 
 
 /**
@@ -100,7 +100,7 @@ convert_diff_table( $texts );
  *
  * @return void
  */
-function conversion_table_replace_pairs() {
+function convert_pt_ao90_table_replace_pairs() {
 
 	$replace_pairs = Convert_PT_AO90\get_replace_pairs();
 
@@ -129,4 +129,4 @@ function conversion_table_replace_pairs() {
 	</div>
 	<?php
 }
-conversion_table_replace_pairs();
+convert_pt_ao90_table_replace_pairs();
