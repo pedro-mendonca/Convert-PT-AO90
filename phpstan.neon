@@ -1,18 +1,14 @@
-#$ composer update --optimize-autoloader
-#$ vendor/bin/phpstan analyze
-
 includes:
-	# @see https://github.com/phpstan/phpstan-src/blob/master/conf/bleedingEdge.neon
-	- phar://phpstan.phar/conf/bleedingEdge.neon
 	# Include this extension
 	- vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-	level: max
+	level: 9
 	inferPrivatePropertyTypeFromConstructor: true
 	paths:
 		# Root
 		- %currentWorkingDirectory%/
-	excludes_analyse:
-		# Dependencies
-		- %currentWorkingDirectory%/vendor/*
-		- %currentWorkingDirectory%/node_modules/*
+	excludePaths:
+		analyseAndScan:
+			# Dependencies
+			- %currentWorkingDirectory%/vendor/*
+			- %currentWorkingDirectory%/node_modules/*
