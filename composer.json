@@ -33,7 +33,6 @@
       "@lint:php",
       "@compat:php",
       "@lint:phpstan",
-      "@lint:js",
       "@lint:md:docs",
       "@lint:pkg-json"
     ],
