@@ -31,3 +31,19 @@ Sul=sul
 Sudoeste=sudoeste
 Oeste=oeste
 Noroeste=noroeste
+
+# Em falta
+activá=ativá
+desactivá=desativá
+
+# https://www.flip.pt/Duvidas-Linguisticas/Duvida-Linguistica/DID/745
+# caractere=caractere	# Dupla grafia
+# caracteres=caracteres	# Dupla grafia
+
+# Correcção de bug de correcção parcial (acto, acta)
+contato=contacto
+contata=contacta
+compato=compacto
+compata=compacta
+intato=intacto
+intata=intacta
