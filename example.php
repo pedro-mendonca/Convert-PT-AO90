@@ -42,7 +42,28 @@ $convert_pt_ao90_texts = array(
 	'Janeiro é uma altura óptima do ano para Fulano, Beltrano e Sicrano...',
 	'Acção na primeira palavra da frase.',
 	'Acções na primeira palavra da frase e acções no resto da frase.',
+	'Redireccionar e fazer redireccionamentos.',
+	'Isto está a ficar com óptimo aspecto!',
+	'A opção está desactivada, tem de activá-la.',
 	'Teste de dois pontos: Junho é quando começa o Verão! Acção na primeira palavra da frase. Encontrar uma acção em Abril.  Dois espaços antes? Abril e Janeiro são meses. A.C. é antes de cristo. Nunca mais chega o Verão?! Espero que não demore... Fim',
+
+	'Olá ###USERNAME###,
+
+Este aviso confirma que o seu endereço de email em ###SITENAME### foi alterado para ###NEW_EMAIL###.
+
+
+
+
+Se não alterou o seu email, por favor contacte o administrador do site através de
+###ADMIN_EMAIL###
+
+Este email foi enviado para ###EMAIL###
+
+Atenciosamente,
+A equipa ###SITENAME###
+###SITEURL###',
+	'Descompactei o pacote e que estava compactado, compacto.',
+	'Ao contactar, contactei o meu contacto, e depois deste acto e fiquei intacto.',
 );
 
 
