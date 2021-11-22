@@ -2,3 +2,9 @@
 
 # Exemplo:
 # Norte=norte
+
+# Opções da dupla grafia a excluir da lista principal de conversão
+aspecto=aspeto
+aspectos=aspetos
+aspectuais=aspetuais
+aspectual=aspetual
