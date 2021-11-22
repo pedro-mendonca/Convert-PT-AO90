@@ -33,18 +33,18 @@ namespace Convert_PT_AO90;
  *
  * @param string $text   Text to convert.
  *
- * @return string|false   Text converted to Portuguese AO90. Return false if no $text or no replace_pairs.
+ * @return string|null   Text converted to Portuguese AO90. Return null if no $text or no replace_pairs.
  */
 function convert_pt_ao90( $text = null ) {
 
 	if ( null === $text ) {
-		return false;
+		return null;
 	}
 
 	$replace_pairs = get_replace_pairs();
 
 	if ( ! $replace_pairs ) {
-		return false;
+		return null;
 	}
 
 	/**
