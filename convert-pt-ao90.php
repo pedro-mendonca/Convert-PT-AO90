@@ -51,7 +51,7 @@ function convert_pt_ao90( $text = null ) {
 	 * Convert words that changed from uppercase to lowercase, except the first word on each sentence.
 	 */
 	// Set the delimiters used to separate sentences.
-	$delimiters = '/([.?!:])\s+\b/';
+	$delimiters = '/([.?!:\n(<(.|\n)*?>)])\s+\b/';
 
 	// Separate in sentences. Returns false if preg_split do not split the string.
 	$sentences = preg_split( $delimiters, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
