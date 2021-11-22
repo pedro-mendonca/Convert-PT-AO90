@@ -93,8 +93,8 @@ foreach ( $convert_pt_ao90_texts as $convert_pt_ao90_original => $convert_pt_ao9
 	exit( 1 );
 }
 
-echo  "\n";
-echo  '====================================' .  "\n";
-echo  'Conversion tests ended with success!' . "\n";
+echo "\n";
+echo '====================================' . "\n";
+echo 'Conversion tests ended with success!' . "\n";
 
 exit( 0 );
