@@ -1,6 +1,7 @@
 # Exclude files from export
 /.github            export-ignore
 /assets             export-ignore
+/tests              export-ignore
 .distignore         export-ignore
 .editorconfig       export-ignore
 .eslintignore       export-ignore

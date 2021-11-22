@@ -29,6 +29,7 @@
     ]
   },
   "scripts": {
+    "build-replace-pairs": "@php inc/build-replace-pairs.php",
     "lint": [
       "@lint:php",
       "@compat:php",
@@ -44,7 +45,8 @@
     "lint:phpmd": "phpmd . text phpmd.xml",
     "lint:md:docs": "npm run lint:md:docs",
     "lint:pkg-json": "npm run lint:pkg-json",
-    "scripts-list": "composer run-script --list"
+    "scripts-list": "composer run-script --list",
+    "test": "@php tests/convert-pt-ao90-test.php"
   },
   "scripts-descriptions": {
     "lint": "Runs all available code linting (PHP_CodeSniffer and MD lint).",
