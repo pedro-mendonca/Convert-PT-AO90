@@ -35,7 +35,7 @@ require_once 'convert-pt-ao90.php';
  */
 $convert_pt_ao90_texts = array(
 	'Palavra',
-	'Janeiro.',
+	'Janeiro e Fevereiro.',
 	'Acção :-) com <a href="https://pt.wordpress.org/">ligação</a>.',
 	'Não me pélo pelo pêlo de quem pára para resistir!',
 	'Alto e pára o baile!',
@@ -46,7 +46,6 @@ $convert_pt_ao90_texts = array(
 	'Isto está a ficar com óptimo aspecto!',
 	'A opção está desactivada, tem de activá-la.',
 	'Teste de dois pontos: Junho é quando começa o Verão! Acção na primeira palavra da frase. Encontrar uma acção em Abril.  Dois espaços antes? Abril e Janeiro são meses. A.C. é antes de cristo. Nunca mais chega o Verão?! Espero que não demore... Fim',
-
 	'Olá ###USERNAME###,
 
 Este aviso confirma que o seu endereço de email em ###SITENAME### foi alterado para ###NEW_EMAIL###.

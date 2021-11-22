@@ -57,8 +57,8 @@ function convert_pt_ao90( $text = null ) {
 	$sentences = preg_split( $delimiters, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
 
 	// Check if split failed.
-	if ( false === $sentences ) {
-		return false;
+	if ( ! $sentences ) {
+		return null;
 	}
 
 	// Loop sentences in reverse order to allow the position to work.
@@ -95,19 +95,11 @@ function convert_pt_ao90( $text = null ) {
 
 
 /**
- * Get all the replace pairs:
- * Main replace pairs from 'AOreplace.txt'
- * Source: languageTool
- * https://github.com/languagetool-org/languagetool/blob/master/languagetool-language-modules/pt/src/main/resources/org/languagetool/rules/pt/AOreplace.txt
+ * Get replace pairs from JSON file.
  *
- * Customize the replace pairs:
- * 'inc/AOreplace_add.txt' - Add more replace pairs.
- * 'inc/AOreplace_remove.txt' - Remove replace pairs.
+ * @since 1.1.0
  *
- * Information from here:
- * http://www.portaldalinguaportuguesa.org/index.php?action=vop&&page=crit1
- *
- * @since 1.0.0
+ * @param string $filename  Path to the JSON file.
  *
  * @return false|array{
  *             case_change: array{
@@ -121,129 +113,49 @@ function convert_pt_ao90( $text = null ) {
  *         }
  *         Multi-dimensional array replace pairs with both types 'general' and 'case_change'. Return false if files not found.
  */
-function get_replace_pairs() {
+function get_replace_pairs( $filename = '' ) {
 
-	// Import main AOreplace file.
-	$file_main = csv_to_array(
-		'lib/languagetool/AOreplace.txt',
-		'=',  // Delimiter.
-		'#'   // Row comment character.
-	);
+	$filename = 'inc/replace_pairs.json';
 
-	// Import AOreplace file with aditional custom items.
-	$file_additional = csv_to_array(
-		'inc/AOreplace_add.txt',
-		'=',  // Delimiter.
-		'#'   // Row comment character.
-	);
-
-	// Import AOreplace file with items to exclude.
-	$file_remove = csv_to_array(
-		'inc/AOreplace_remove.txt',
-		'=',  // Delimiter.
-		'#'   // Row comment character.
-	);
-
-	if ( ! $file_main || ! $file_additional || ! $file_remove ) {
-		return false;
-	}
-
-	$files = array_merge( $file_main['data'], $file_additional['data'] );
-
-	$intersect = array_intersect( $files, $file_remove['data'] );
-
-	$replace_pairs = array_diff( $files, $intersect );
-
-	$result = array(
-		'case_change' => array(
-			'original'    => array(),
-			'replacement' => array(),
-		),
-		'general'     => array(
-			'original'    => array(),
-			'replacement' => array(),
-		),
-	);
-
-	foreach ( $replace_pairs as $key => $replace_pair ) {
-
-		// Make sure that $key is always a string.
-		$key = strval( $key );
-
-		// Check if starts with the same letter but case has changed.
-		if ( strtolower( substr( $key, 0, 1 ) ) === strtolower( substr( $replace_pair, 0, 1 ) ) && substr( $key, 0, 1 ) !== substr( $replace_pair, 0, 1 ) ) {
-
-			// Add item.
-			$result['case_change']['original'][]    = $key;
-			$result['case_change']['replacement'][] = strval( $replace_pair );
-
-		} else {
-
-			// Add item.
-			$result['general']['original'][]    = $key;
-			$result['general']['replacement'][] = $replace_pair;
-
-			// Duplicate Uppercase item, for sentences first words.
-			$result['general']['original'][]    = ucfirst( $key );
-			$result['general']['replacement'][] = ucfirst( $replace_pair );
-
-		}
-	}
-
-	return $result;
-
-}
-
-
-/**
- * Convert specified delimiter separated file into an associative array.
- * The commented and empty rows are excluded.
- *
- * Inspired in http://gist.github.com/385876 by Jay Williams.
- *
- * @since 1.0.0
- *
- * @param string $filename        Path to the text file.
- * @param string $delimiter       The separator used in the file.
- * @param string $comment_start   The character used to comment the row.
- *
- * @return false|array{
- *             comments: array<int, string>,
- *             data: array<string, string>
- *         }
- *         Associative array of the file Comments and Data. Return false if file not found.
- */
-function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) {
-
-	$filename = __DIR__ . DIRECTORY_SEPARATOR . $filename;
-
+	// Check if JSON file exist.
 	if ( ! file_exists( $filename ) || ! is_readable( $filename ) ) {
 		return false;
 	}
 
-	$file_data = array(
-		'comments' => array(),
-		'data'     => array(),
-	);
+	// Check JSON data.
+	$json = file_get_contents( $filename ); // phpcs:ignore
+	if ( ! $json ) {
+		return false;
+	}
 
-	if ( false !== ( $handle = fopen( $filename, 'r' ) ) ) {
+	$file_data = json_decode( $json, true );
 
-		while ( false !== ( $row = fgetcsv( $handle, 1000, $delimiter ) ) ) {
+	if ( ! is_array( $file_data ) ) {
+		return false;
+	}
 
-			if ( is_array( $row ) && substr( trim( $row[0] ), 0, 1 ) === $comment_start ) { // Check if row is comment.
+	if ( ! isset( $file_data['case_change'] ) || ! is_array( $file_data['case_change'] ) ) {
+		return false;
+	}
 
-				// Add full row to comments array.
-				$file_data['comments'][] = implode( $delimiter, $row );
+	if ( ! isset( $file_data['case_change']['original'] ) || ! is_array( $file_data['case_change']['original'] ) ) {
+		return false;
+	}
 
-			} elseif ( is_array( $row ) && null !== $row[0] ) { // Check if is not an empty row.
+	if ( ! isset( $file_data['case_change']['replacement'] ) || ! is_array( $file_data['case_change']['replacement'] ) ) {
+		return false;
+	}
 
-				// Add lowercase entry.
-				$file_data['data'][ strval( $row[0] ) ] = strval( $row[1] );
+	if ( ! isset( $file_data['general'] ) || ! is_array( $file_data['general'] ) ) {
+		return false;
+	}
 
-			}
-		} // End while.
+	if ( ! isset( $file_data['general']['original'] ) || ! is_array( $file_data['general']['original'] ) ) {
+		return false;
+	}
 
-		fclose( $handle );
+	if ( ! isset( $file_data['general']['replacement'] ) || ! is_array( $file_data['general']['replacement'] ) ) {
+		return false;
 	}
 
 	return $file_data;
