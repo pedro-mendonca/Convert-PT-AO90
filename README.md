@@ -59,12 +59,12 @@ Examples:
 
 ## Changelog
 
-### Unreleased
+### 1.1.0
 
 *   Use a pre-built Replace Pairs JSON file to improve performance.
 *   Simplify Replace Pairs data.
 *   Bump minimum PHP to 7.2.
-*   Add Test! Run the Convert PT AO90 against a set of text strings with expected results.
+*   Add Tests! [Run the Convert PT AO90](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/test.yml) against a [set of text strings](https://github.com/pedro-mendonca/Convert-PT-AO90/blob/main/tests/convert-pt-ao90-test.php#L26:L70) with expected results.
 *   Add some custom replace pairs rules.
 
 ### 1.0.3
