@@ -8,6 +8,7 @@
 [![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/pedro-mendonca/convert-pt-ao90?label=PHP%20Required&logo=PHP&logoColor=white)](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/php-compatibility.yml)
 [![Sponsor](https://img.shields.io/badge/GitHub-🤍%20Sponsor-ea4aaa?logo=github)](https://github.com/sponsors/pedro-mendonca)
 
+[![Test](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/test.yml/badge.svg)](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/test.yml)
 [![Coding Standards](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/coding-standards.yml/badge.svg)](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/coding-standards.yml)
 [![Static Analysis](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/static-analysis.yml)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cbdc5b23059143879de61527501ba199)](https://app.codacy.com/gh/pedro-mendonca/Convert-PT-AO90?utm_source=github.com&utm_medium=referral&utm_content=pedro-mendonca/Convert-PT-AO90&utm_campaign=Badge_Grade)
