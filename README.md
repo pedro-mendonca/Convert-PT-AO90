@@ -62,6 +62,7 @@ Examples:
 ### Unreleased
 
 *   Use a pre-built Replace Pairs JSON file to improve performance.
+*   Simplify Replace Pairs data.
 *   Bump minimum PHP to 7.2.
 *   Add Test! Run the Convert PT AO90 against a set of text strings with expected results.
 *   Add some custom replace pairs rules.
