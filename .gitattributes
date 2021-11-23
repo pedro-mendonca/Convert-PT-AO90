@@ -1,6 +1,5 @@
 # Exclude directories from export
 /.github/              export-ignore
-/node_modules/         export-ignore
 /tests/                export-ignore
 
 # Exclude files from export

@@ -34,6 +34,11 @@
       "@build-replace-pairs",
       "@test"
     ],
+    "zip": [
+      "composer install --no-dev",
+      "composer archive --file=convert-pt-ao90 --format=zip",
+      "composer install"
+    ],
     "lint": [
       "@lint:php",
       "@compat:php",
@@ -66,7 +71,8 @@
     "lint:phpmd": "Runs the PHPMD code static analysis.",
     "lint:md:docs": "Run npm MD linter.",
     "lint:pkg-json": "Run npm package.json linter.",
-    "scripts-list": "List all Composer scripts."
+    "scripts-list": "List all Composer scripts.",
+    "zip": "Build production zip archive."
   },
   "funding": [
     {
