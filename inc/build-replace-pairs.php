@@ -26,7 +26,9 @@ namespace Convert_PT_AO90;
  */
 function build_replace_pairs_json() {
 
-	echo "\n" . 'Build Replace Pairs JSON file' . "\n\n";
+	// Bright white header.
+	echo "\n\e[97m" . 'Build Replace Pairs JSON file';
+	echo "\n" . '-----------------------------' . "\e[39m\n";
 
 	$replace_pairs = get_replace_pairs_csv();
 
@@ -45,7 +47,8 @@ function build_replace_pairs_json() {
 	// Check if replace pairs exist and build was successful.
 	if ( ! $replace_pairs || ! $build ) {
 		printf(
-			"\e[31m" . 'File not created: %s' . "\e[39m",
+			// Print yellow error exit.
+			"\e[33m" . 'File not created: %s' . "\e[39m",
 			$file
 		);
 
@@ -55,7 +58,8 @@ function build_replace_pairs_json() {
 	}
 
 	printf(
-		"\e[32m" . 'File created successfully: %s' . "\e[39m",
+		// Print bright white success exit.
+		"\e[97m" . 'File created successfully: %s' . "\e[39m",
 		$file
 	);
 

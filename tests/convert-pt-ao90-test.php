@@ -81,13 +81,17 @@ A equipa ###SITENAME###
  */
 function convert_pt_ao90_test( $tests = array() ) {
 
+	// Bright white header.
+	echo "\n\e[97m" . 'Convert tests with Convert PT AO90';
+	echo "\n" . '----------------------------------' . "\e[39m\n";
+
 	/**
 	 *Banner created with https://manytools.org/hacker-tools/ascii-banner/
 	 */
-	echo "\e[32m" . ' ___ _____     ' . "\e[33m" . '_   ___  ' . "\e[31m" . '___  __' . "\n";
-	echo "\e[32m" . '| _ \_   _|   ' . "\e[33m" . '/_\ / _ \\' . "\e[31m" . '/ _ \/  \\' . "\n";
-	echo "\e[32m" . '|  _/ | |    ' . "\e[33m" . '/ _ \ (_) ' . "\e[31m" . '\_, / () |' . "\n";
-	echo "\e[32m" . '|_|   |_|   ' . "\e[33m" . '/_/ \_\___/ ' . "\e[31m" . '/_/ \__/' . "\e[39m\n\n\n";
+	echo "\e[32m" . '  ___ _____     ' . "\e[33m" . '_   ___  ' . "\e[31m" . '___  __' . "\n";
+	echo "\e[32m" . ' | _ \_   _|   ' . "\e[33m" . '/_\ / _ \\' . "\e[31m" . '/ _ \/  \\' . "\n";
+	echo "\e[32m" . ' |  _/ | |    ' . "\e[33m" . '/ _ \ (_) ' . "\e[31m" . '\_, / () |' . "\n";
+	echo "\e[32m" . ' |_|   |_|   ' . "\e[33m" . '/_/ \_\___/ ' . "\e[31m" . '/_/ \__/' . "\e[39m\n\n\n";
 
 	if ( empty( $tests ) ) {
 		echo 'No strings found to test.';
@@ -148,11 +152,11 @@ function convert_pt_ao90_test( $tests = array() ) {
 	}
 
 	if ( empty( $errors ) ) {
-		// Green red result message.
-		$result = "\e[32m" . 'All tests passed successfuly!' . "\e[39m";
+		// Green bright white result message.
+		$result = "\e[97m" . 'All tests passed successfuly!' . "\e[39m";
 	} else {
-		// Color red result message.
-		$result = "\e[31m" . sprintf( 'Tests finished with %d error(s).', count( $errors ) ) . "\e[39m";
+		// Color yellow result message.
+		$result = "\e[33m" . sprintf( 'Tests finished with %d error(s).', count( $errors ) ) . "\e[39m";
 	}
 
 	echo $result . "\n\n";
