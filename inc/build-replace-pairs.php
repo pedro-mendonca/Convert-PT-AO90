@@ -18,6 +18,51 @@
 namespace Convert_PT_AO90;
 
 /**
+ * Build JSON file with replace pairs.
+ *
+ * @since 1.1.0
+ *
+ * @return void
+ */
+function build_replace_pairs_json() {
+
+	echo "\n" . 'Build Replace Pairs JSON file' . "\n\n";
+
+	$replace_pairs = get_replace_pairs_csv();
+
+	// File to build.
+	$file = 'inc/replace_pairs.json';
+
+	$build = file_put_contents( // phpcs:ignore
+		$file,
+		json_encode( $replace_pairs, JSON_UNESCAPED_UNICODE ) // phpcs:ignore
+	);
+
+	// Check if replace pairs exist and build was successful.
+	if ( ! $replace_pairs || ! $build ) {
+		printf(
+			"\e[31m" . 'File not created: %s' . "\e[39m",
+			$file
+		);
+
+		echo "\n\n";
+
+		exit( 1 );
+	}
+
+	printf(
+		"\e[32m" . 'File created successfully: %s' . "\e[39m",
+		$file
+	);
+
+	echo "\n\n";
+
+	exit( 0 );
+
+}
+
+
+/**
  * Get all the replace pairs:
  * Main replace pairs from 'AOreplace.txt'
  * Source: languageTool
@@ -46,44 +91,50 @@ namespace Convert_PT_AO90;
  */
 function get_replace_pairs_csv() {
 
-	// Import main AOreplace file.
-	$file      = '../lib/languagetool/AOreplace.txt';
-	$file_main = csv_to_array( $file, '=', '#' );
-	if ( ! $file_main ) {
-		printf(
-			'File "%s" not found.',
-			$file
-		);
-		return false;
+	$errors = array();
+
+	$library_files = array(
+		'main'   => '../lib/languagetool/AOreplace.txt', // Import main AOreplace file.
+		'add'    => '../lib/AOreplace_add.txt',          // Import AOreplace file with custom items to add.
+		'remove' => '../lib/AOreplace_remove.txt',       // Import AOreplace file with custom items to exclude.
+	);
+
+	$files = array();
+
+	foreach ( $library_files as $type => $library_file ) {
+		$files[ $type ] = csv_to_array( $library_file, '=', '#' );
+		if ( ! $files[ $type ] ) {
+			$errors[] = sprintf(
+				'File not found: %s',
+				$library_file
+			);
+		}
 	}
 
-	// Import AOreplace file with aditional custom items.
-	$file            = '../lib/AOreplace_add.txt';
-	$file_additional = csv_to_array( $file, '=', '#' );
-	if ( ! $file_additional ) {
-		printf(
-			'File "%s" not found.',
-			$file
-		);
+	if ( ! empty( $errors ) ) {
+
+		echo "\n" . 'Building error(s):' . "\n";
+
+		foreach ( $errors as $error ) {
+			printf(
+				' - %s%s%s' . "\n",
+				"\e[33m",
+				$error,
+				"\e[39m"
+			);
+		}
+
+		echo "\n\n";
+
 		return false;
+
 	}
 
-	// Import AOreplace file with items to exclude.
-	$file        = '../lib/AOreplace_remove.txt';
-	$file_remove = csv_to_array( $file, '=', '#' );
-	if ( ! $file_remove ) {
-		printf(
-			'File "%s" not found.',
-			$file
-		);
-		return false;
-	}
+	$files_merge = array_merge( $files['main']['data'], $files['add']['data'] );
 
-	$files = array_merge( $file_main['data'], $file_additional['data'] );
+	$files_intersect = array_intersect( $files_merge, $files['remove']['data'] );
 
-	$intersect = array_intersect( $files, $file_remove['data'] );
-
-	$replace_pairs = array_diff( $files, $intersect );
+	$replace_pairs = array_diff( $files_merge, $files_intersect );
 
 	$result = array(
 		'case_change' => array(
@@ -180,23 +231,6 @@ function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) 
 	return $file_data;
 }
 
-/**
- * Build file.
- *
- * @return void
- */
-function build_replace_pairs_json() {
-
-	$replace_pairs = get_replace_pairs_csv();
-
-	$file = 'inc/replace_pairs.json';
-
-	file_put_contents( // phpcs:ignore
-		$file,
-		json_encode( $replace_pairs, JSON_UNESCAPED_UNICODE ) // phpcs:ignore
-	);
-
-}
 
 /*
  * Build the replace pairs JSON file.

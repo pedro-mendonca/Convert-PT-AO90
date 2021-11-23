@@ -33,6 +33,7 @@
 
 	<rule ref="rulesets/design.xml">
 		<exclude name="DevelopmentCodeFragment"/>
+		<exclude name="ExitExpression"/>
 	</rule>
 
 	<rule ref="rulesets/naming.xml"/>

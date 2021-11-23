@@ -69,32 +69,98 @@ A equipa ###SITENAME###
 	'Ao contactar, contactei o meu contacto, e depois deste acto e fiquei intacto.' => 'Ao contactar, contactei o meu contacto, e depois deste ato e fiquei intacto.',
 );
 
-if ( empty( $convert_pt_ao90_texts ) ) {
-	echo 'No strings found to test.' . "\n";
-	exit( 0 );
-}
 
-echo 'Start text conversion tests.' . "\n";
-echo '============================' . "\n\n";
+/**
+ * Runs conversion tests for given array of text strings.
+ *
+ * @since 1.1.0
+ *
+ * @param array<string, string> $tests   Array of texts to test the conversion.
+ *
+ * @return void
+ */
+function convert_pt_ao90_test( $tests = array() ) {
 
-foreach ( $convert_pt_ao90_texts as $convert_pt_ao90_original => $convert_pt_ao90_expected ) {
+	/**
+	 *Banner created with https://manytools.org/hacker-tools/ascii-banner/
+	 */
+	echo "\e[32m" . ' ___ _____     ' . "\e[33m" . '_   ___  ' . "\e[31m" . '___  __' . "\n";
+	echo "\e[32m" . '| _ \_   _|   ' . "\e[33m" . '/_\ / _ \\' . "\e[31m" . '/ _ \/  \\' . "\n";
+	echo "\e[32m" . '|  _/ | |    ' . "\e[33m" . '/ _ \ (_) ' . "\e[31m" . '\_, / () |' . "\n";
+	echo "\e[32m" . '|_|   |_|   ' . "\e[33m" . '/_/ \_\___/ ' . "\e[31m" . '/_/ \__/' . "\e[39m\n\n\n";
 
-	// Convert text.
-	$convert_pt_ao90_test = convert_pt_ao90( $convert_pt_ao90_original );
-
-	if ( $convert_pt_ao90_expected === $convert_pt_ao90_test ) {
-		echo 'Passed.' . "\n";
-		continue;
+	if ( empty( $tests ) ) {
+		echo 'No strings found to test.';
+		exit( 0 );
+	} else {
+		printf(
+			'Found %s text strings to test.',
+			count( $tests )
+		);
 	}
 
-	echo 'Failed:' . "\n";
-	echo $convert_pt_ao90_test . "\n";
+	echo "\n\n";
 
-	exit( 1 );
+	echo 'Testing: ';
+
+	$errors = array();
+
+	foreach ( $tests as $original => $expected ) {
+
+		// Convert text.
+		$test = convert_pt_ao90( $original );
+
+		if ( $expected !== $test ) {
+			// Print yellow 'E' (Error).
+			echo "\e[33m" . 'E' . "\e[39m";
+			$errors[] = $test;
+			continue;
+		}
+
+		// Print green '.' (Item).
+		echo "\e[32m" . '.' . "\e[39m";
+
+	}
+
+	printf(
+		' (%s of %s passed)',
+		count( $tests ) - count( $errors ),
+		count( $tests )
+	);
+
+	echo "\n\n\n";
+
+	if ( ! empty( $errors ) ) {
+
+		echo 'Conversion error(s):' . "\n";
+
+		foreach ( $errors as $error ) {
+			printf(
+				' - %s%s%s' . "\n",
+				"\e[33m",
+				$error,
+				"\e[39m"
+			);
+		}
+
+		echo "\n\n";
+
+	}
+
+	if ( empty( $errors ) ) {
+		// Green red result message.
+		$result = "\e[32m" . 'All tests passed successfuly!' . "\e[39m";
+	} else {
+		// Color red result message.
+		$result = "\e[31m" . sprintf( 'Tests finished with %d error(s).', count( $errors ) ) . "\e[39m";
+	}
+
+	echo $result . "\n\n";
+
+	exit( count( $errors ) );
+
 }
 
-echo "\n";
-echo '====================================' . "\n";
-echo 'Conversion tests ended with success!' . "\n";
 
-exit( 0 );
+// Test the conversion.
+convert_pt_ao90_test( $convert_pt_ao90_texts );

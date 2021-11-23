@@ -29,7 +29,11 @@
     ]
   },
   "scripts": {
-    "build-replace-pairs": "@php inc/build-replace-pairs.php",
+    "build": [
+      "@lint",
+      "@build-replace-pairs",
+      "@test"
+    ],
     "lint": [
       "@lint:php",
       "@compat:php",
@@ -37,6 +41,7 @@
       "@lint:md:docs",
       "@lint:pkg-json"
     ],
+    "build-replace-pairs": "@php inc/build-replace-pairs.php",
     "phpcs-i": "phpcs -i",
     "lint:php": "phpcs -v --standard=phpcs.xml",
     "format:php": "phpcbf -v --standard=phpcs.xml",
@@ -49,6 +54,9 @@
     "test": "@php tests/convert-pt-ao90-test.php"
   },
   "scripts-descriptions": {
+    "build": "Lint, build replace pairs JSON and test conversion.",
+    "build-replace-pairs": "Generate replace pairs JSON file from CSV library.",
+    "test": "Runs conversion tests.",
     "lint": "Runs all available code linting (PHP_CodeSniffer and MD lint).",
     "phpcs-i": "Log PHPCS debug information.",
     "lint:php": "Runs the PHP code sniffer.",
