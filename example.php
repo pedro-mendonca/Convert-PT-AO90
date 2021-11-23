@@ -24,6 +24,7 @@
  * @version    1.0
  */
 
+
 /**
  * Require Convert-PT-AO90.
  */
@@ -122,7 +123,7 @@ convert_pt_ao90_diff_table( $convert_pt_ao90_texts );
  */
 function convert_pt_ao90_table_replace_pairs() {
 
-	$replace_pairs = Convert_PT_AO90\get_replace_pairs();
+	$replace_pairs = Convert_PT_AO90\get_replace_pairs( 'inc/replace_pairs.json' );
 
 	if ( ! $replace_pairs ) {
 		return;
@@ -130,7 +131,7 @@ function convert_pt_ao90_table_replace_pairs() {
 
 	?>
 	<h2>Tabela de conversão de português AO90</h2>
-	<h3>Geral (<?php echo count( $replace_pairs['general']['original'] ); ?>)</h3>
+	<h3>Geral (<?php echo count( $replace_pairs['general'] ); ?>)</h3>
 	<div>
 		<pre>
 			<?php
@@ -139,7 +140,7 @@ function convert_pt_ao90_table_replace_pairs() {
 		</pre>
 
 	</div>
-	<h3>Alteração de maiúsculas (<?php echo count( $replace_pairs['case_change']['original'] ); ?>)</h3>
+	<h3>Alteração de maiúsculas (<?php echo count( $replace_pairs['case_change'] ); ?>)</h3>
 	<div>
 		<pre>
 			<?php
