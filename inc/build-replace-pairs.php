@@ -35,7 +35,11 @@ function build_replace_pairs_json() {
 
 	$build = file_put_contents( // phpcs:ignore
 		$file,
-		json_encode( $replace_pairs, JSON_UNESCAPED_UNICODE ) // phpcs:ignore
+		json_encode( // phpcs:ignore
+			$replace_pairs,
+			JSON_UNESCAPED_UNICODE
+			// | JSON_PRETTY_PRINT // phpcs:ignore
+		)
 	);
 
 	// Check if replace pairs exist and build was successful.
@@ -78,18 +82,14 @@ function build_replace_pairs_json() {
  * @since 1.0.0
  *
  * @return false|array{
- *             case_change: array{
- *                 original: array<int, string>,
- *                 replacement: array<int, string>
- *             },
- *             general: array{
- *                 original: array<int, string>,
- *                 replacement: array<int, string>
- *             }
+ *             case_change: array<string, string>,
+ *             general: array<string, string>,
  *         }
  *         Multi-dimensional array replace pairs with both types 'general' and 'case_change'. Return false if files not found.
  */
 function get_replace_pairs_csv() {
+
+	$logs = array();
 
 	$errors = array();
 
@@ -102,19 +102,58 @@ function get_replace_pairs_csv() {
 	$files = array();
 
 	foreach ( $library_files as $type => $library_file ) {
-		$files[ $type ] = csv_to_array( $library_file, '=', '#' );
-		if ( ! $files[ $type ] ) {
+
+		$files[ $type ] = array();
+
+		// Get library CSV file data.
+		$file = csv_to_array( $library_file, '=', '#' );
+
+		// Check if file exist.
+		if ( false === $file ) {
 			$errors[] = sprintf(
 				'File not found: %s',
 				$library_file
 			);
+			continue;
 		}
+
+		// Check if file is empty.
+		if ( empty( $file ) ) {
+			$logs[] = sprintf(
+				'Load: %s (empty)',
+				$library_file
+			);
+			continue;
+		}
+
+		$files[ $type ] = $file;
+
+		// Log successful load.
+		$logs[] = sprintf(
+			'Load: %s',
+			$library_file
+		);
+
 	}
 
+	// Output logs.
+	if ( ! empty( $logs ) ) {
+
+		echo "\n";
+		foreach ( $logs as $log ) {
+			printf(
+				'%s' . "\n",
+				$log
+			);
+		}
+		echo "\n";
+
+	}
+
+	// Output errors.
 	if ( ! empty( $errors ) ) {
 
-		echo "\n" . 'Building error(s):' . "\n";
-
+		echo 'Error(s):' . "\n";
 		foreach ( $errors as $error ) {
 			printf(
 				' - %s%s%s' . "\n",
@@ -123,51 +162,44 @@ function get_replace_pairs_csv() {
 				"\e[39m"
 			);
 		}
-
-		echo "\n\n";
+		echo "\n";
 
 		return false;
 
 	}
 
-	$files_merge = array_merge( $files['main']['data'], $files['add']['data'] );
+	// Merge Main and Additional data files.
+	$files_merge = array_merge( $files['main'], $files['add'] );
 
-	$files_intersect = array_intersect( $files_merge, $files['remove']['data'] );
+	// Get data to remove.
+	$files_intersect = array_intersect( $files_merge, $files['remove'] );
 
+	// Actually remove data.
 	$replace_pairs = array_diff( $files_merge, $files_intersect );
 
 	$result = array(
-		'case_change' => array(
-			'original'    => array(),
-			'replacement' => array(),
-		),
-		'general'     => array(
-			'original'    => array(),
-			'replacement' => array(),
-		),
+		'case_change' => array(), // Pairs Original (string) => Replacement (string).
+		'general'     => array(), // Pairs Original (string) => Replacement (string).
 	);
 
-	foreach ( $replace_pairs as $key => $replace_pair ) {
+	foreach ( $replace_pairs as $original => $replacement ) {
 
 		// Make sure that $key is always a string.
-		$key = strval( $key );
+		$original = strval( $original );
 
 		// Check if starts with the same letter but case has changed.
-		if ( strtolower( substr( $key, 0, 1 ) ) === strtolower( substr( $replace_pair, 0, 1 ) ) && substr( $key, 0, 1 ) !== substr( $replace_pair, 0, 1 ) ) {
+		if ( strtolower( substr( $original, 0, 1 ) ) === strtolower( substr( $replacement, 0, 1 ) ) && substr( $original, 0, 1 ) !== substr( $replacement, 0, 1 ) ) {
 
 			// Add item.
-			$result['case_change']['original'][]    = $key;
-			$result['case_change']['replacement'][] = strval( $replace_pair );
+			$result['case_change'][ $original ] = strval( $replacement );
 
 		} else {
 
 			// Add item.
-			$result['general']['original'][]    = $key;
-			$result['general']['replacement'][] = $replace_pair;
+			$result['general'][ $original ] = $replacement;
 
 			// Duplicate Uppercase item, for sentences first words.
-			$result['general']['original'][]    = ucfirst( $key );
-			$result['general']['replacement'][] = ucfirst( $replace_pair );
+			$result['general'][ ucfirst( $original ) ] = ucfirst( $replacement );
 
 		}
 	}
@@ -189,11 +221,7 @@ function get_replace_pairs_csv() {
  * @param string $delimiter       The separator used in the file.
  * @param string $comment_start   The character used to comment the row.
  *
- * @return false|array{
- *             comments: array<int, string>,
- *             data: array<string, string>
- *         }
- *         Associative array of the file Comments and Data. Return false if file not found.
+ * @return false|array<string, string>   Associative array of the file Comments and Data. Return false if file not found.
  */
 function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) {
 
@@ -203,7 +231,7 @@ function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) 
 		return false;
 	}
 
-	$file_data = array(
+	$file = array(
 		'comments' => array(),
 		'data'     => array(),
 	);
@@ -215,12 +243,12 @@ function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) 
 			if ( is_array( $row ) && substr( trim( $row[0] ), 0, 1 ) === $comment_start ) { // Check if row is comment.
 
 				// Add full row to comments array.
-				$file_data['comments'][] = implode( $delimiter, $row );
+				$file['comments'][] = implode( $delimiter, $row ); // Currently not necessary.
 
 			} elseif ( is_array( $row ) && null !== $row[0] ) { // Check if is not an empty row.
 
 				// Add lowercase entry.
-				$file_data['data'][ strval( $row[0] ) ] = strval( $row[1] );
+				$file['data'][ strval( $row[0] ) ] = strval( $row[1] );
 
 			}
 		} // End while.
@@ -228,7 +256,7 @@ function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) 
 		fclose( $handle );
 	}
 
-	return $file_data;
+	return $file['data'];
 }
 
 

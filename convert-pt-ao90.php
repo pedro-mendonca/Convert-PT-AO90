@@ -3,6 +3,7 @@
  * Convert-PT-AO90
  *
  * Ferramenta de conversão de língua portuguesa da forma do Acordo Ortográfico de 1945 para a forma do Acordo Ortográfico de 1990.
+ * Portuguese language conversion tool from the 1945 Orthographic Agreement form to the 1990 Orthographic Agreement form.
  *
  * Lista de palavras alteradas pelo Acordo Ortográfico de 1990 obtida do projecto LanguageTool:
  * https://languagetool.org/
@@ -41,7 +42,8 @@ function convert_pt_ao90( $text = null ) {
 		return null;
 	}
 
-	$replace_pairs = get_replace_pairs();
+	// Get Replace Pairs JSON file.
+	$replace_pairs = get_replace_pairs( 'inc/replace_pairs.json' );
 
 	if ( ! $replace_pairs ) {
 		return null;
@@ -78,7 +80,7 @@ function convert_pt_ao90( $text = null ) {
 		$sentence_ending     = substr( $sentence[0], strlen( $words[0] . ' ' ) );
 
 		// Convert case changing words from sentence ending.
-		$sentence_ending_ao90 = str_replace( $replace_pairs['case_change']['original'], $replace_pairs['case_change']['replacement'], $sentence_ending );
+		$sentence_ending_ao90 = str_replace( array_keys( $replace_pairs['case_change'] ), $replace_pairs['case_change'], $sentence_ending );
 
 		// Convert sentence ending.
 		$text = substr_replace( $text, $sentence_ending_ao90, $sentence_ending_pos, $sentence_ending_len );
@@ -88,7 +90,7 @@ function convert_pt_ao90( $text = null ) {
 	/**
 	 * Convert all general replace_pairs.
 	 */
-	$text_ao90 = str_replace( $replace_pairs['general']['original'], $replace_pairs['general']['replacement'], $text );
+	$text_ao90 = str_replace( array_keys( $replace_pairs['general'] ), $replace_pairs['general'], $text );
 
 	return $text_ao90;
 }
@@ -102,20 +104,17 @@ function convert_pt_ao90( $text = null ) {
  * @param string $filename  Path to the JSON file.
  *
  * @return false|array{
- *             case_change: array{
- *                 original: array<int, string>,
- *                 replacement: array<int, string>
- *             },
- *             general: array{
- *                 original: array<int, string>,
- *                 replacement: array<int, string>
- *             }
+ *             case_change: array<string, string>,
+ *             general: array<string, string>,
  *         }
  *         Multi-dimensional array replace pairs with both types 'general' and 'case_change'. Return false if files not found.
  */
 function get_replace_pairs( $filename = '' ) {
 
-	$filename = 'inc/replace_pairs.json';
+	// Check for given file name.
+	if ( ! $filename ) {
+		return false;
+	}
 
 	// Check if JSON file exist.
 	if ( ! file_exists( $filename ) || ! is_readable( $filename ) ) {
@@ -128,35 +127,24 @@ function get_replace_pairs( $filename = '' ) {
 		return false;
 	}
 
-	$file_data = json_decode( $json, true );
+	$replace_pairs = json_decode( $json, true );
 
-	if ( ! is_array( $file_data ) ) {
+	if ( ! is_array( $replace_pairs ) ) {
 		return false;
 	}
 
-	if ( ! isset( $file_data['case_change'] ) || ! is_array( $file_data['case_change'] ) ) {
+	if ( ! isset( $replace_pairs['case_change'] ) || ! is_array( $replace_pairs['case_change'] ) ) {
 		return false;
 	}
 
-	if ( ! isset( $file_data['case_change']['original'] ) || ! is_array( $file_data['case_change']['original'] ) ) {
+	if ( ! isset( $replace_pairs['general'] ) || ! is_array( $replace_pairs['general'] ) ) {
 		return false;
 	}
 
-	if ( ! isset( $file_data['case_change']['replacement'] ) || ! is_array( $file_data['case_change']['replacement'] ) ) {
-		return false;
-	}
+	$result = array(
+		'case_change' => $replace_pairs['case_change'],
+		'general'     => $replace_pairs['general'],
+	);
 
-	if ( ! isset( $file_data['general'] ) || ! is_array( $file_data['general'] ) ) {
-		return false;
-	}
-
-	if ( ! isset( $file_data['general']['original'] ) || ! is_array( $file_data['general']['original'] ) ) {
-		return false;
-	}
-
-	if ( ! isset( $file_data['general']['replacement'] ) || ! is_array( $file_data['general']['replacement'] ) ) {
-		return false;
-	}
-
-	return $file_data;
+	return $result;
 }
