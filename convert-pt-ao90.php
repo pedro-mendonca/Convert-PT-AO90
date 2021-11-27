@@ -47,6 +47,14 @@ function convert_pt_ao90( $text = null ) {
 		return null;
 	}
 
+	// Separate in sentences. Returns false if preg_split do not split the string.
+	$sentences = get_text_sentences( $text );
+
+	// Check if split failed.
+	if ( ! $sentences ) {
+		return null;
+	}
+
 	// Get Replace Pairs JSON file.
 	$replace_pairs = get_replace_pairs( 'inc/replace_pairs.min.json' );
 
@@ -54,50 +62,169 @@ function convert_pt_ao90( $text = null ) {
 		return null;
 	}
 
+	// Walk through sentences.
+	foreach ( $sentences as $sentence_key => $sentence ) {
+
+		// Separate in words. Returns false if preg_split do not split the string.
+		$words = get_sentence_words( $sentence );
+
+		// Check if split failed.
+		if ( ! $words ) {
+			return null;
+		}
+
+		$word_index = 0;
+
+		// Walk through words.
+		foreach ( $words as $word_key => $word ) {
+
+			// Check if $word is a word to convert.
+			$delimiters = '/^(\w+)/u';
+
+			if ( preg_match( $delimiters, $word ) ) {
+
+				// Increase word count.
+				$word_index++;
+
+				// Check if is not the first word. Check for the first actual word, skips initial empty spaces.
+				if ( 1 < $word_index ) {
+
+					// Check all words after the first one for case_change replacements, because the first word should not be changed.
+					if ( array_key_exists( $word, $replace_pairs['case_change'] ) ) {
+						// Actual conversion of the word according the replace pairs.
+						$words[ $word_key ] = $replace_pairs['case_change'][ $word ];
+					}
+				}
+
+				// Check all words for general replacements.
+				if ( array_key_exists( $word, $replace_pairs['general'] ) ) {
+					// Actual conversion of the word according the replace pairs.
+					$words[ $word_key ] = $replace_pairs['general'][ $word ];
+				}
+			}
+		}
+
+		// Concatenate converted words.
+		$sentence = implode( $words );
+
+		// Convert sentence.
+		$sentences[ $sentence_key ] = $sentence;
+
+	}
+
+	// Concatenate converted sentences.
+	$text_ao90 = implode( $sentences );
+
+	return $text_ao90;
+}
+
+
+/**
+ * Separate the sentences from a given text in an array.
+ *
+ * @since 1.2.0
+ *
+ * @param string $text   Text to separate in sentences.
+ *
+ * @return false|array<int, string>    Array of sentences.
+ */
+function get_text_sentences( $text = null ) {
+
+	if ( null === $text ) {
+		return false;
+	}
+
+	// Sentence endings used to split text into sentences.
+	$endings = array(
+		'.',
+		'?',
+		'!',
+		':',
+		'\n',
+	);
+
 	/**
-	 * Convert words that changed from uppercase to lowercase, except the first word on each sentence.
+	 * Any number of any kind of invisible character, following the sentence endings.
+	 * Ideally (?<=[.?!:\n]\s+) with \s+ to split after any number of spaces.
+	 * Currently not possible on PHP. Need to check the sentence for the first word afterwards.
 	 */
-	// Set the delimiters used to separate sentences.
-	$delimiters = '/([.?!:\n(<(.|\n)*?>)])\s+\b/';
+	$empty_space = '\s';
+
+	// Abreviations with '.' that are not sentence endings (eg. 'Sr.', 'Dr.' ).
+	$abreviations = array(
+		'Sr.',
+		'Dr.',
+	);
+
+	$exceptions = '';
+
+	foreach ( $abreviations as $abreviation ) {
+		$exceptions .= '(?<!' . $abreviation . '\s)';
+	}
+
+	/**
+	 * Set the delimiters used to separate sentences.
+	 * One of [.] or [?] or [!] or [:] or [\n] folowed by [any number of spaces], with the exception of the array of abreviations.
+	 * Tested on https://regex101.com/
+	 */
+	$delimiters = '/(?<=[' . implode( $endings ) . ']' . $empty_space . ')' . $exceptions . '/';
 
 	// Separate in sentences. Returns false if preg_split do not split the string.
-	$sentences = preg_split( $delimiters, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
+	$sentences = preg_split( $delimiters, $text );
 
 	// Check if split failed.
 	if ( ! $sentences ) {
-		return null;
+		return false;
 	}
 
-	// Loop sentences in reverse order to allow the position to work.
-	foreach ( array_reverse( $sentences ) as $sentence ) {
+	// Check if split doesn't lose any character.
+	if ( implode( $sentences ) !== $text ) {
+		echo "An error ocurred while spliting text in sentences...\n";
+		return false;
+	}
 
-		// Separate sentece by words.
-		$words = explode( ' ', trim( $sentence[0] ) );
+	return $sentences;
+}
 
-		// Check if the sentence has more than one word.
-		if ( 1 === count( $words ) ) {
-			continue;
-		}
 
-		// Sentence ending.
-		$sentence_ending_pos = intval( $sentence[1] ) + strlen( $words[0] . ' ' );
-		$sentence_ending_len = strlen( $sentence[0] ) - strlen( $words[0] . ' ' );
-		$sentence_ending     = substr( $sentence[0], strlen( $words[0] . ' ' ) );
+/**
+ * Separate the words from a given sentence in an array.
+ *
+ * @since 1.2.0
+ *
+ * @param string $sentence   Sentence to separate in words.
+ *
+ * @return false|array<int, string>    Array of words.
+ */
+function get_sentence_words( $sentence = null ) {
 
-		// Convert case changing words from sentence ending.
-		$sentence_ending_ao90 = str_replace( array_keys( $replace_pairs['case_change'] ), $replace_pairs['case_change'], $sentence_ending );
-
-		// Convert sentence ending.
-		$text = substr_replace( $text, $sentence_ending_ao90, $sentence_ending_pos, $sentence_ending_len );
-
+	if ( null === $sentence ) {
+		return false;
 	}
 
 	/**
-	 * Convert all general replace_pairs.
+	 * Strip HTML because it's not safe to convert HTML tags content. Any text in it should be set on separate strings as variables.
+	 * <[^>]*>                           Exclude HTML.
+	 * (\b(?!\b-\b)(?<!\b-\b))           All words, keeping words with hyphens unseparated.
+	 * (\b(?!\b-\b)(?<!\b-\b))|<[^>]*>   All words, keeping words with hyphens unseparated, excluding HTML.
 	 */
-	$text_ao90 = str_replace( array_keys( $replace_pairs['general'] ), $replace_pairs['general'], $text );
+	$delimiters = '/((\b(?!\b-\b)(?<!\b-\b))|<[^>]*>)/u';
 
-	return $text_ao90;
+	// Split sentence in words.
+	$words = preg_split( $delimiters, $sentence, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY );
+
+	// Check if split failed.
+	if ( ! $words ) {
+		return false;
+	}
+
+	// Check if split doesn't lose any character.
+	if ( implode( $words ) !== $sentence ) {
+		echo "An error ocurred while spliting sentence in words...\n";
+		return false;
+	}
+
+	return $words;
 }
 
 
