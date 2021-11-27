@@ -122,7 +122,7 @@ convert_pt_ao90_diff_table( $convert_pt_ao90_texts );
  */
 function convert_pt_ao90_table_replace_pairs() {
 
-	$replace_pairs = Convert_PT_AO90\get_replace_pairs( 'inc/replace_pairs.json' );
+	$replace_pairs = Convert_PT_AO90\get_replace_pairs( __DIR__ . '/inc/replace_pairs.min.json' );
 
 	if ( ! $replace_pairs ) {
 		return;
