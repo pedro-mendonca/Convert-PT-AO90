@@ -39,7 +39,7 @@ namespace Convert_PT_AO90;
  *
  * @param string $text   Text to convert.
  *
- * @return string|null   Text converted to Portuguese AO90. Return null if no $text or no replace_pairs.
+ * @return string|null   Text converted to Portuguese AO90. Return null if no $text, no replace_pairs or if separation of sentences or words fails.
  */
 function convert_pt_ao90( $text = null ) {
 
@@ -126,7 +126,7 @@ function convert_pt_ao90( $text = null ) {
  *
  * @param string $text   Text to separate in sentences.
  *
- * @return false|array<int, string>    Array of sentences.
+ * @return false|array<int, string>   Array of sentences.
  */
 function get_text_sentences( $text = null ) {
 
@@ -145,8 +145,6 @@ function get_text_sentences( $text = null ) {
 
 	/**
 	 * Any number of any kind of invisible character, following the sentence endings.
-	 * Ideally (?<=[.?!:\n]\s+) with \s+ to split after any number of spaces.
-	 * Currently not possible on PHP. Need to check the sentence for the first word afterwards.
 	 */
 	$empty_space = '\s';
 
@@ -164,6 +162,8 @@ function get_text_sentences( $text = null ) {
 
 	/**
 	 * Set the delimiters used to separate sentences.
+	 * Ideally (?<=[.?!:\n]\s+) with \s+ to split after any number of spaces, which is currently not possible on PHP. Need to check the sentence for the first word afterwards.
+	 *
 	 * One of [.] or [?] or [!] or [:] or [\n] folowed by [any number of spaces], with the exception of the array of abreviations.
 	 * Tested on https://regex101.com/
 	 */
@@ -194,7 +194,7 @@ function get_text_sentences( $text = null ) {
  *
  * @param string $sentence   Sentence to separate in words.
  *
- * @return false|array<int, string>    Array of words.
+ * @return false|array<int, string>   Array of words.
  */
 function get_sentence_words( $sentence = null ) {
 
@@ -233,7 +233,7 @@ function get_sentence_words( $sentence = null ) {
  *
  * @since 1.1.0
  *
- * @param string $filename  Path to the JSON file.
+ * @param string $filename   Path to the JSON file.
  *
  * @return false|array{
  *             case_change: array<string, string>,
