@@ -32,38 +32,52 @@ function build_replace_pairs_json() {
 
 	$replace_pairs = get_replace_pairs_csv();
 
-	// File to build.
-	$file = 'inc/replace_pairs.json';
-
-	$build = file_put_contents( // phpcs:ignore
-		$file,
-		json_encode( // phpcs:ignore
-			$replace_pairs,
-			JSON_UNESCAPED_UNICODE
-			// | JSON_PRETTY_PRINT // phpcs:ignore
-		)
+	// Files to build.
+	$files = array(
+		array(
+			'name' => 'inc/replace_pairs.json',
+			'data' => $replace_pairs,
+			'args' => JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT,
+		),
+		array(
+			'name' => 'inc/replace_pairs.min.json',
+			'data' => $replace_pairs,
+			'args' => JSON_UNESCAPED_UNICODE,
+		),
 	);
 
-	// Check if replace pairs exist and build was successful.
-	if ( ! $replace_pairs || ! $build ) {
-		printf(
-			// Print yellow error exit.
-			"\e[33m" . 'File not created: %s' . "\e[39m",
-			$file
+	foreach ( $files as $file ) {
+
+		$build = file_put_contents( // phpcs:ignore
+			$file['name'],
+			json_encode( // phpcs:ignore
+				$file['data'],
+				$file['args']
+			)
 		);
 
-		echo "\n\n";
+		// Check if replace pairs exist and build was successful.
+		if ( ! $file['data'] || ! $build ) {
+			printf(
+				// Print yellow error exit.
+				"\e[33m" . 'File not created: %s' . "\e[39m",
+				$file['name']
+			);
 
-		exit( 1 );
+			echo "\n";
+
+			exit( 1 );
+		}
+
+		printf(
+			// Print bright white success exit.
+			"\e[97m" . 'File created successfully: %s' . "\e[39m",
+			$file['name']
+		);
+
+		echo "\n";
+
 	}
-
-	printf(
-		// Print bright white success exit.
-		"\e[97m" . 'File created successfully: %s' . "\e[39m",
-		$file
-	);
-
-	echo "\n\n";
 
 	exit( 0 );
 
