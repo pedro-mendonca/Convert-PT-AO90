@@ -63,9 +63,11 @@ Examples:
 
 *   Rebuild code to allow a detailed control over sentence and word boundaries.
 *   Fix problem of partial find+replace of words, now only whole words can be converted.
-*   Keep pretty JSON source for readability.
-*   Add more tests for many different types of texts: Multiline, HTML, multiple sentences, etc.
+*   Remove temporary bug fix of partial find+replace (acto->ato).
+*   Update main replace pairs library.
 *   Add more custom replace pairs rules.
+*   Rebuild and add both replace pairs JSON, minified and source (pretty).
+*   Add more tests for many different types of texts: Multiline, HTML, multiple sentences, etc.
 
 ### 1.1.0
 
