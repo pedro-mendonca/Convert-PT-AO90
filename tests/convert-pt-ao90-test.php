@@ -1,6 +1,6 @@
 <?php
 /**
- * Test conversion with Convert PT AO90.
+ * Test conversions with Convert PT AO90.
  *
  * @package Convert-PT-AO90
  */
