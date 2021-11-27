@@ -59,6 +59,14 @@ Examples:
 
 ## Changelog
 
+### 1.2.0
+
+*   Rebuild code to allow a detailed control over sentence and word boundaries.
+*   Fix problem of partial find+replace of words, now only whole words can be converted.
+*   Keep pretty JSON source for readability.
+*   Add more tests for many different types of texts: Multiline, HTML, multiple sentences, etc.
+*   Add more custom replace pairs rules.
+
 ### 1.1.0
 
 *   Use a pre-built Replace Pairs JSON file to improve performance.
