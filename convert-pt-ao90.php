@@ -2,15 +2,20 @@
 /**
  * Convert-PT-AO90
  *
- * Ferramenta de conversão de língua portuguesa da forma do Acordo Ortográfico de 1945 para a forma do Acordo Ortográfico de 1990.
  * Portuguese language conversion tool from the 1945 Orthographic Agreement form to the 1990 Orthographic Agreement form.
+ * Ferramenta de conversão de língua portuguesa da forma do Acordo Ortográfico de 1945 para a forma do Acordo Ortográfico de 1990.
  *
+ * List of words altered by the 1990 Orthographic Agreement obtained from the LanguageTool project:
  * Lista de palavras alteradas pelo Acordo Ortográfico de 1990 obtida do projecto LanguageTool:
  * https://languagetool.org/
  *
+ * Portuguese language modules:
  * Módulos de língua portuguesa:
  * https://github.com/languagetool-org/languagetool/tree/master/languagetool-language-modules/pt/src/main/resources/org/languagetool/rules/pt
  * https://github.com/TiagoSantos81/languagetool/tree/master/languagetool-language-modules/pt/src/main/resources/org/languagetool/rules/pt
+ *
+ * Source:
+ * https://github.com/languagetool-org/languagetool/blob/master/languagetool-language-modules/pt/src/main/resources/org/languagetool/rules/pt/AOreplace.txt
  *
  * Instructions:
  *   $string = 'Não me pélo pelo pêlo de quem pára para resistir';
@@ -20,9 +25,9 @@
  * @package    Convert-PT-AO90
  * @link       https://github.com/pedro-mendonca/Convert-PT-AO90
  * @author     Pedro Mendonça
- * @copyright  2020 Pedro Mendonça
+ * @copyright  2021 Pedro Mendonça
  * @license    GPLv3
- * @version    1.0.2
+ * @version    1.2.0
  */
 
 namespace Convert_PT_AO90;
