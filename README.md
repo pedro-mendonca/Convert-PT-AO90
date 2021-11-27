@@ -59,6 +59,10 @@ Examples:
 
 ## Changelog
 
+### 1.2.1
+
+*   Fix JSON path issue when used as dependency.
+
 ### 1.2.0
 
 *   Rebuild code to allow a detailed control over sentence and word boundaries.
@@ -71,7 +75,7 @@ Examples:
 
 ### 1.1.0
 
-*   Use a pre-built Replace Pairs JSON file to improve performance.
+*   Use a pre-built Replace Pairs JSON file to improve performance (5x faster).
 *   Simplify Replace Pairs data.
 *   Bump minimum PHP to 7.2.
 *   Add Tests! [Run the Convert PT AO90](https://github.com/pedro-mendonca/Convert-PT-AO90/actions/workflows/test.yml) against a [set of text strings](https://github.com/pedro-mendonca/Convert-PT-AO90/blob/main/tests/convert-pt-ao90-test.php#L26:L70) with expected results.
