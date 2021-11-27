@@ -1,18 +1,13 @@
 <?php
 /**
- * Convert-PT-AO90
- *
  * Script to build the JSON file with the replace pairs.
  *
  * Build with composer:
  *   > composer build-replace-pairs
  *
- * @package    Convert-PT-AO90
- * @link       https://github.com/pedro-mendonca/Convert-PT-AO90
- * @author     Pedro Mendonça
- * @copyright  2020 Pedro Mendonça
- * @license    GPLv3
- * @version    1.1.0
+ * @package Convert-PT-AO90
+ * @since   1.1.0
+ * @since   1.2.0   Builds both compact and pretty JSON files.
  */
 
 namespace Convert_PT_AO90;
