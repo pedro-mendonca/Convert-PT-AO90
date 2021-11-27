@@ -2,7 +2,7 @@
 # Sources:
 # http://www.portaldalinguaportuguesa.org/index.php?action=vop&&page=crit1
 
-# Meses do ano
+# Meses do ano - primeira letra minúscula
 Janeiro=janeiro
 Fevereiro=fevereiro
 Março=março
@@ -16,13 +16,13 @@ Outubro=outubro
 Novembro=novembro
 Dezembro=dezembro
 
-# Estações do ano
+# Estações do ano - primeira letra minúscula
 Inverno=inverno
 Primavera=primavera
 Verão=verão
 Outuno=outono
 
-# Nome dos pontos cardeais
+# Nome dos pontos cardeais - primeira letra minúscula
 Norte=norte
 Nordeste=nordeste
 Este=este
@@ -32,18 +32,14 @@ Sudoeste=sudoeste
 Oeste=oeste
 Noroeste=noroeste
 
-# Em falta
-activá=ativá
-desactivá=desativá
+# Pares adicionais
+activá-la=ativá-la
+activá-lo=ativá-lo
+desactivá-la=desativá-la
+desactivá-lo=desativá-lo
+reactivá-la=reativá-la
+reactivá-lo=reativá-lo
 
 # https://www.flip.pt/Duvidas-Linguisticas/Duvida-Linguistica/DID/745
 # caractere=caractere	# Dupla grafia
 # caracteres=caracteres	# Dupla grafia
-
-# Correcção de bug de correcção parcial (acto, acta)
-contato=contacto
-contata=contacta
-compato=compacto
-compata=compacta
-intato=intacto
-intata=intacta
