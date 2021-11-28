@@ -34,12 +34,30 @@ Noroeste=noroeste
 
 # Pares adicionais
 activá-la=ativá-la
+activá-las=ativá-las
 activá-lo=ativá-lo
+activá-los=ativá-los
+active-a=ative-a
+active-as=ative-as
+active-o=ative-o
+active-os=ative-os
 desactivá-la=desativá-la
+desactivá-las=desativá-las
 desactivá-lo=desativá-lo
+desactivá-los=desativá-los
+desactive-a=desative-a
+desactive-as=desative-as
+desactive-o=desative-o
+desactive-os=desative-os
 reactivá-la=reativá-la
+reactivá-las=reativá-las
 reactivá-lo=reativá-lo
+reactivá-los=reativá-los
+reactive-a=reative-a
+reactive-as=reative-as
+reactive-o=reative-o
+reactive-os=reative-os
 
-# https://www.flip.pt/Duvidas-Linguisticas/Duvida-Linguistica/DID/745
-# caractere=caractere	# Dupla grafia
+# https://www.flip.pt/Duvidas-Linguisticas/Duvida-Linguistica/DID/745 carácter e caracteres
+# caráctere=caractere	# Dupla grafia
 # caracteres=caracteres	# Dupla grafia
