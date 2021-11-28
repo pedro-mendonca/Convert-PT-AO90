@@ -135,18 +135,21 @@ function get_text_sentences( $text = null ) {
 	}
 
 	// Sentence endings used to split text into sentences.
-	$endings = array(
-		'.',
-		'?',
-		'!',
-		':',
-		'\n',
+	$sentence_ending = array(
+		'.', // Endpoint.
+		'?', // Question mark.
+		'!', // Exclamation mark.
+		':', // Colon.
 	);
 
-	/**
-	 * Any number of any kind of invisible character, following the sentence endings.
-	 */
-	$empty_space = '\s';
+	// Any number of any kind of invisible character, following the sentence endings.
+	$after_ending = array(
+		'\s', // Any whitespace character.
+		'\n', // New line.
+	);
+
+	// HTML tag with any content inside.
+	$html_tag = '<[^>]*>';
 
 	// Abreviations with '.' that are not sentence endings (eg. 'Sr.', 'Dr.' ).
 	$abreviations = array(
@@ -154,20 +157,23 @@ function get_text_sentences( $text = null ) {
 		'Dr.',
 	);
 
-	$exceptions = '';
+	$exceptions = array();
 
 	foreach ( $abreviations as $abreviation ) {
-		$exceptions .= '(?<!' . $abreviation . '\s)';
+		$exceptions[] = '(?<!' . $abreviation . '\s)';
 	}
+
+	// Sentence ends after at least two new lines.
+	$extra = '(?=\n\n+)';
 
 	/**
 	 * Set the delimiters used to separate sentences.
 	 * Ideally (?<=[.?!:\n]\s+) with \s+ to split after any number of spaces, which is currently not possible on PHP. Need to check the sentence for the first word afterwards.
 	 *
-	 * One of [.] or [?] or [!] or [:] or [\n] folowed by [any number of spaces], with the exception of the array of abreviations.
+	 * One of [.] or [?] or [!] or [:] followed by [a space or line break], with the exception of the array of abreviations.
 	 * Tested on https://regex101.com/
 	 */
-	$delimiters = '/(?<=[' . implode( $endings ) . ']' . $empty_space . ')' . $exceptions . '/';
+	$delimiters = '/((?<=[' . implode( $sentence_ending ) . '][' . implode( $after_ending ) . '])|(?=[' . implode( $sentence_ending ) . ']' . $html_tag . '))' . implode( $exceptions ) . '|' . $extra . '/';
 
 	// Separate in sentences. Returns false if preg_split do not split the string.
 	$sentences = preg_split( $delimiters, $text );

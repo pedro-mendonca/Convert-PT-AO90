@@ -58,6 +58,12 @@ $convert_pt_ao90_texts = array(
 	'Este aviso confirma que
 o seu endereço de email em ###SITENAME### foi alterado para ###NEW_EMAIL###.' => 'Este aviso confirma que
 o seu endereço de email em ###SITENAME### foi alterado para ###NEW_EMAIL###.',
+	'Este aviso confirma que
+Beltrano e sicrano subscreveram.'                       => 'Este aviso confirma que
+beltrano e sicrano subscreveram.',
+	'Este aviso confirma que
+ Beltrano e sicrano subscreveram.'                      => 'Este aviso confirma que
+ beltrano e sicrano subscreveram.',
 	'Olá ###USERNAME###,
 
 Este aviso confirma que o seu endereço de email em ###SITENAME### foi alterado para ###NEW_EMAIL###.
@@ -91,6 +97,8 @@ A equipa ###SITENAME###
 	'Um co-director ultra-radical.'                     => 'Um codiretor ultrarradical.',
 	// Multiple sentences, with more than one space in between, case changes, sentences starting with numbers, starting with other letters than [A-Z] (example: Ú).
 	'Quatro acções.   A segunda inclui uma <a href="#" value="Acção">Acção com maiúscula</a>.  Sr. Beltrano e Sr.ª Sicrano n.º 4. Frase n.º 4. 3 colunas. Última frase.' => 'Quatro ações.   A segunda inclui uma <a href="#" value="Acção">Ação com maiúscula</a>.  Sr. beltrano e Sr.ª sicrano n.º 4. Frase n.º 4. 3 colunas. Última frase.',
+	// Sentence ending with HTML afterwards.
+	'<strong>Erro:</strong> Beltrano é a primeira palavra a seguir a um fim de frase com HTML, mas Sicrano não.' => '<strong>Erro:</strong> Beltrano é a primeira palavra a seguir a um fim de frase com HTML, mas sicrano não.',
 );
 
 
