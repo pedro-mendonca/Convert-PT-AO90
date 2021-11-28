@@ -59,6 +59,12 @@ Examples:
 
 ## Changelog
 
+### 1.2.2
+
+*   Fix sentence boundary issue with HTML after ending.
+*   Add sentence boundary after two new lines.
+*   Add more tests: new lines followed by HTML.
+
 ### 1.2.1
 
 *   Fix JSON path issue when used as dependency.
