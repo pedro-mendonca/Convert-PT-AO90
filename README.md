@@ -59,6 +59,10 @@ Examples:
 
 ## Changelog
 
+### 1.2.3
+
+*   Rebuild replace pairs.
+
 ### 1.2.2
 
 *   Fix sentence boundary issue with HTML after ending.
