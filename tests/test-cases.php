@@ -43,15 +43,15 @@ function convert_pt_ao90_test_cases() {
 		'Alto e pára o baile!'                      => 'Alto e para o baile!',
 		// Contacto, tacto, intacto, compacto, impacto.
 		'Contactei um contacto com tacto fica tudo intacto, compacto e deixa um grande impacto!' => 'Contactei um contacto com tato fica tudo intacto, compacto e deixa um grande impacto!',
-		'Ao contactar, contactei o meu contacto, e depois deste acto e fiquei intacto.' => 'Ao contactar, contactei o meu contacto, e depois deste ato e fiquei intacto.',
-		'Descompactei o pacote e que estava compactado com graça, compacto.' => 'Descompactei o pacote e que estava compactado com graça, compacto.',
+		'Ao contactar, contactei o meu contacto depois deste acto.' => 'Ao contactar, contactei o meu contacto depois deste ato.',
 		// Words with missing spaces after commas.
-		'Descompactei o pacote e que estava compactado, compacto,pára activá-lo.' => 'Descompactei o pacote e que estava compactado, compacto,para ativá-lo.',
+		'Descompactei o pacote que estava compactado, compacto,pára de activá-lo!' => 'Descompactei o pacote que estava compactado, compacto,para de ativá-lo!',
 		// Conversion in the first word keeping the uppercase case.
 		'Acção na primeira palavra da frase.'       => 'Ação na primeira palavra da frase.',
 		'Acções na primeira palavra da frase e acções no resto da frase.' => 'Ações na primeira palavra da frase e ações no resto da frase.',
 		// Redireccionar, óptimo, desactivar.
 		'Redireccionar e fazer redireccionamentos.' => 'Redirecionar e fazer redirecionamentos.',
+		// Aspecto (optional - dupla grafia).
 		'Isto está a ficar com óptimo aspecto!'     => 'Isto está a ficar com ótimo aspecto!',
 		'Ao desactivar, a opção fica desactivada, tem de activá-la.' => 'Ao desativar, a opção fica desativada, tem de ativá-la.',
 		// Use of : and following uppercase. Also ...
