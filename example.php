@@ -29,41 +29,10 @@
  */
 require_once 'convert-pt-ao90.php';
 
-
 /**
- * Sentences examples to test the conversion in convert_diff_table().
+ * Require test cases.
  */
-$convert_pt_ao90_texts = array(
-	'Palavra',
-	'Janeiro e Fevereiro.',
-	'Acção :-) com <a href="https://pt.wordpress.org/">ligação</a>.',
-	'Não me pélo pelo pêlo de quem pára para resistir!',
-	'Alto e pára o baile!',
-	'Janeiro é uma altura óptima do ano para Fulano, Beltrano e Sicrano...',
-	'Acção na primeira palavra da frase.',
-	'Acções na primeira palavra da frase e acções no resto da frase.',
-	'Redireccionar e fazer redireccionamentos.',
-	'Isto está a ficar com óptimo aspecto!',
-	'A opção está desactivada, tem de activá-la.',
-	'Teste de dois pontos: Junho é quando começa o Verão! Acção na primeira palavra da frase. Encontrar uma acção em Abril.  Dois espaços antes? Abril e Janeiro são meses. A.C. é antes de cristo. Nunca mais chega o Verão?! Espero que não demore... Fim',
-	'Olá ###USERNAME###,
-
-Este aviso confirma que o seu endereço de email em ###SITENAME### foi alterado para ###NEW_EMAIL###.
-
-
-
-
-Se não alterou o seu email, por favor contacte o administrador do site através de
-###ADMIN_EMAIL###
-
-Este email foi enviado para ###EMAIL###
-
-Atenciosamente,
-A equipa ###SITENAME###
-###SITEURL###',
-	'Descompactei o pacote e que estava compactado, compacto.',
-	'Ao contactar, contactei o meu contacto, e depois deste acto e fiquei intacto.',
-);
+require_once __DIR__ . '/tests/test-cases.php';
 
 
 /**
@@ -73,7 +42,7 @@ A equipa ###SITENAME###
  *
  * @since 1.0.0
  *
- * @param array<int,string> $texts   Array of texts do convert to Portuguese AO90.
+ * @param array<string,string> $texts   Array of texts with expected conversion to Portuguese AO90.
  *
  * @return void
  */
@@ -98,11 +67,11 @@ function convert_pt_ao90_diff_table( $texts = null ) {
 			<th>Português pós-AO90</th>
 		</tr>
 		<?php
-		foreach ( $texts as $text ) {
+		foreach ( $texts as $original => $expected ) {
 			?>
 			<tr>
-				<td class="left"><?php echo $text; ?></td>
-				<td class="right"><?php echo Convert_PT_AO90\convert_pt_ao90( $text ); ?></td>
+				<td class="left"><?php echo $original; ?></td>
+				<td class="right"><?php echo Convert_PT_AO90\convert_pt_ao90( $original ); ?></td>
 			</tr>
 			<?php
 		}
@@ -110,7 +79,7 @@ function convert_pt_ao90_diff_table( $texts = null ) {
 	</table>
 	<?php
 }
-convert_pt_ao90_diff_table( $convert_pt_ao90_texts );
+convert_pt_ao90_diff_table( Convert_PT_AO90\convert_pt_ao90_test_cases() );
 
 
 /**
