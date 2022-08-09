@@ -59,6 +59,15 @@ Examples:
 
 ## Changelog
 
+### Unreleased
+
+*   Rebuild replace pairs with half the size.
+*   Improve performance by using only lowercase replace pairs.
+*   Fix matching words starting with an accented vowel.
+*   Remove wrong replace pairs about cardinal points (lowercased since 1945).
+*   Add some more replace pairs.
+*   Update dependencies.
+
 ### 1.2.3
 
 *   Rebuild replace pairs.
