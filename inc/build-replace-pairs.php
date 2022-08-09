@@ -201,7 +201,7 @@ function get_replace_pairs_csv() {
 		$original = strval( $original );
 
 		// Check if starts with the same letter but case has changed.
-		if ( strtolower( substr( $original, 0, 1 ) ) === strtolower( substr( $replacement, 0, 1 ) ) && substr( $original, 0, 1 ) !== substr( $replacement, 0, 1 ) ) {
+		if ( mb_strtolower( mb_substr( $original, 0, 1 ) ) === mb_strtolower( mb_substr( $replacement, 0, 1 ) ) && mb_substr( $original, 0, 1 ) !== mb_substr( $replacement, 0, 1 ) ) {
 
 			// Add item.
 			$result['case_change'][ $original ] = strval( $replacement );
@@ -212,7 +212,7 @@ function get_replace_pairs_csv() {
 			$result['general'][ $original ] = $replacement;
 
 			// Duplicate Uppercase item, for sentences first words.
-			$result['general'][ ucfirst( $original ) ] = ucfirst( $replacement );
+			$result['general'][ mb_strtoupper( mb_substr( $original, 0, 1 ) ) . mb_substr( $original, 1 ) ] = mb_strtoupper( mb_substr( $replacement, 0, 1 ) ) . mb_substr( $replacement, 1 );
 
 		}
 	}

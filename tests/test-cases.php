@@ -118,6 +118,7 @@ A equipa ###SITENAME###
 		'Actualizar' => 'Atualizar',
 		// First word starting with accented vowel.
 		'Óptima frase com primeira vogal acentuada.' => 'Ótima frase com primeira vogal acentuada.',
+		'Árctico e árctico.' => 'Ártico e ártico.',
 	);
 
 	return $convert_pt_ao90_test_cases;
