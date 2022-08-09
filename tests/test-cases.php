@@ -32,7 +32,8 @@ function convert_pt_ao90_test_cases() {
 		'Beltrano em Maio com sicrano.'             => 'Beltrano em maio com sicrano.',
 		'Janeiro é uma altura óptima do ano para Fulano, Beltrano e Sicrano...' => 'Janeiro é uma altura ótima do ano para fulano, beltrano e sicrano...',
 		// Variables count as words, second word should have case change.
-		'%d Norte e Oeste.'                         => '%d norte e oeste.',
+		'Beltranos e Sicranos.'                     => 'Beltranos e sicranos.',
+		'%d Beltranos e Sicranos.'                  => '%d beltranos e sicranos.',
 		// Multiple sentences.
 		'Uma acção. Duas acções.'                   => 'Uma ação. Duas ações.',
 		// Don't convert words in HTML code. It's best for i18n to use variables to isolate translatable strings.
@@ -101,6 +102,8 @@ A equipa ###SITENAME###
 		'Quatro acções.   A segunda inclui uma <a href="#" value="Acção">Acção com maiúscula</a>.  Sr. Beltrano e Sr.ª Sicrano n.º 4. Frase n.º 4. 3 colunas. Última frase.' => 'Quatro ações.   A segunda inclui uma <a href="#" value="Acção">Ação com maiúscula</a>.  Sr. beltrano e Sr.ª sicrano n.º 4. Frase n.º 4. 3 colunas. Última frase.',
 		// Sentence ending with HTML afterwards.
 		'<strong>Erro:</strong> Beltrano é a primeira palavra a seguir a um fim de frase com HTML, mas Sicrano não.' => '<strong>Erro:</strong> Beltrano é a primeira palavra a seguir a um fim de frase com HTML, mas sicrano não.',
+		// Cardinal points shouldn't be converted, are lowercase since 1945.
+		'Eu sou da Geórgia do Sul. Lisboa fica na margem norte do Tejo. Vou para o Norte!' => 'Eu sou da Geórgia do Sul. Lisboa fica na margem norte do Tejo. Vou para o Norte!',
 	);
 
 	return $convert_pt_ao90_test_cases;
