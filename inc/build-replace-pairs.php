@@ -208,11 +208,8 @@ function get_replace_pairs_csv() {
 
 		} else {
 
-			// Add item.
+			// Add item lowercase.
 			$result['general'][ $original ] = $replacement;
-
-			// Duplicate Uppercase item, for sentences first words.
-			$result['general'][ mb_strtoupper( mb_substr( $original, 0, 1 ) ) . mb_substr( $original, 1 ) ] = mb_strtoupper( mb_substr( $replacement, 0, 1 ) ) . mb_substr( $replacement, 1 );
 
 		}
 	}
