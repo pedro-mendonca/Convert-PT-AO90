@@ -56,7 +56,10 @@ function convert_pt_ao90( $text = null ) {
 	}
 
 	// Get Replace Pairs JSON file.
-	$replace_pairs = get_replace_pairs( __DIR__ . '/inc/replace_pairs.min.json' );
+	static $replace_pairs;
+	if ( ! isset( $replace_pairs ) ) {
+		$replace_pairs = get_replace_pairs( __DIR__ . '/inc/replace_pairs.min.json' );
+	}
 
 	if ( ! $replace_pairs ) {
 		return null;
