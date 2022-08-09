@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "*"
+  # Allows you to run this workflow manually from the Actions tab.
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    name: Build Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@2.21.1
+        with:
+          php-version: '7.4'
+          coverage: none
+
+      - name: Log debug information
+        run: |
+          php --version
+          composer --version
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v1
+        with:
+          composer-options: "--no-dev"
+
+      - name: Get tag
+        id: tag
+        run: echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
+
+      - name: Build project
+        run: git archive -o /tmp/convert-pt-ao90.${{ steps.tag.outputs.tag }}.zip --prefix=convert-pt-ao90/ ${{ steps.tag.outputs.tag }}
+
+      - name: Upload file and write changelog
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          # Generates basic release notes that we can edit later
+          generate_release_notes: true
+          body: |
+            ## Downloads
+            - [Convert PT AO90 ${{ steps.tag.outputs.tag }}](https://github.com/pedro-mendonca/Convert-PT-AO90/releases/download/${{ steps.tag.outputs.tag }}/convert-pt-ao90.${{ steps.tag.outputs.tag }}.zip)
+          files: |
+            /tmp/convert-pt-ao90.${{ steps.tag.outputs.tag }}.zip
