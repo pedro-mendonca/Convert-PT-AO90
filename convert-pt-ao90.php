@@ -89,17 +89,30 @@ function convert_pt_ao90( $text = null ) {
 				// Check if is not the first word. Check for the first actual word, skips initial empty spaces.
 				if ( 1 < $word_index ) {
 
-					// Check all words after the first one for case_change replacements, because the first word should not be changed.
+					// Check word after the first one for case_change replacements, because the first word should not be changed.
 					if ( array_key_exists( $word, $replace_pairs['case_change'] ) ) {
 						// Actual conversion of the word according the replace pairs.
 						$words[ $word_key ] = $replace_pairs['case_change'][ $word ];
 					}
 				}
 
-				// Check all words for general replacements.
-				if ( array_key_exists( $word, $replace_pairs['general'] ) ) {
-					// Actual conversion of the word according the replace pairs.
-					$words[ $word_key ] = $replace_pairs['general'][ $word ];
+				// Check word for general replacements.
+				if ( array_key_exists( mb_strtolower( $word ), $replace_pairs['general'] ) ) {
+
+					switch ( $word ) {
+						// Word lowercase.
+						case mb_strtolower( $word ):
+							$words[ $word_key ] = $replace_pairs['general'][ $word ];
+							break;
+						// Word Titlecase.
+						case mb_strtoupper( mb_substr( $word, 0, 1 ) ) . mb_strtolower( mb_substr( $word, 1 ) ):
+							$words[ $word_key ] = mb_strtoupper( mb_substr( $replace_pairs['general'][ mb_strtolower( $word ) ], 0, 1 ) ) . mb_substr( $replace_pairs['general'][ mb_strtolower( $word ) ], 1 );
+							break;
+						// Word UPPERCASE.
+						case mb_strtoupper( $word ):
+							$words[ $word_key ] = mb_strtoupper( $replace_pairs['general'][ mb_strtolower( $word ) ] );
+							break;
+					}
 				}
 			}
 		}
