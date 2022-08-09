@@ -20,7 +20,7 @@ Dezembro=dezembro
 Inverno=inverno
 Primavera=primavera
 Verão=verão
-Outuno=outono
+Outono=outono
 
 # Pares adicionais
 activá-la=ativá-la
