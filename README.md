@@ -59,7 +59,7 @@ Examples:
 
 ## Changelog
 
-### Unreleased
+### 1.3.0
 
 *   Rebuild replace pairs with half the size.
 *   Improve performance by using only lowercase replace pairs.
