@@ -97,13 +97,27 @@ Atenciosamente,
 A equipa ###SITENAME###
 ###SITEURL###',
 		// Words with hyphens.
-		'Um co-director ultra-radical.'             => 'Um codiretor ultrarradical.',
+		'Um co-director ultra-radical e o co-fundador não usam anti-spam.' => 'Um codiretor ultrarradical e o cofundador não usam antispam.',
 		// Multiple sentences, with more than one space in between, case changes, sentences starting with numbers, starting with other letters than [A-Z] (example: Ú).
 		'Quatro acções.   A segunda inclui uma <a href="#" value="Acção">Acção com maiúscula</a>.  Sr. Beltrano e Sr.ª Sicrano n.º 4. Frase n.º 4. 3 colunas. Última frase.' => 'Quatro ações.   A segunda inclui uma <a href="#" value="Acção">Ação com maiúscula</a>.  Sr. beltrano e Sr.ª sicrano n.º 4. Frase n.º 4. 3 colunas. Última frase.',
 		// Sentence ending with HTML afterwards.
 		'<strong>Erro:</strong> Beltrano é a primeira palavra a seguir a um fim de frase com HTML, mas Sicrano não.' => '<strong>Erro:</strong> Beltrano é a primeira palavra a seguir a um fim de frase com HTML, mas sicrano não.',
 		// Cardinal points shouldn't be converted, are lowercase since 1945.
 		'Eu sou da Geórgia do Sul. Lisboa fica na margem norte do Tejo. Vou para o Norte!' => 'Eu sou da Geórgia do Sul. Lisboa fica na margem norte do Tejo. Vou para o Norte!',
+		// Test.
+		'Não pode eliminar um plugin enquanto ele estiver activo no site principal.' => 'Não pode eliminar um plugin enquanto ele estiver ativo no site principal.',
+		'Não está activo.' => 'Não está ativo.',
+		// Additional replace-pairs.
+		'Tem de seleccioná-lo para activá-lo.' => 'Tem de selecioná-lo para ativá-lo.',
+		// Words in uppercase.
+		'REGISTO DE ACTUALIZAÇÃO' => 'REGISTO DE ATUALIZAÇÃO',
+		'ACTUALIZAÇÃO' => 'ATUALIZAÇÃO',
+		'Registo de actualização' => 'Registo de atualização',
+		'Actualização' => 'Atualização',
+		'ACTUALIZAR' => 'ATUALIZAR',
+		'Actualizar' => 'Atualizar',
+		// First word starting with accented vowel.
+		'Óptima frase com primeira vogal acentuada.' => 'Ótima frase com primeira vogal acentuada.',
 	);
 
 	return $convert_pt_ao90_test_cases;
