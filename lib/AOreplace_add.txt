@@ -22,16 +22,6 @@ Primavera=primavera
 Verão=verão
 Outuno=outono
 
-# Nome dos pontos cardeais - primeira letra minúscula
-Norte=norte
-Nordeste=nordeste
-Este=este
-Sudeste=sudeste
-Sul=sul
-Sudoeste=sudoeste
-Oeste=oeste
-Noroeste=noroeste
-
 # Pares adicionais
 activá-la=ativá-la
 activá-las=ativá-las
