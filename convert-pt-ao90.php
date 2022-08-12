@@ -99,7 +99,7 @@ function convert_pt_ao90( $text = null ) {
 					}
 				}
 
-				// Check word for general replacements.
+				// Check lowercased word for general replacements.
 				if ( array_key_exists( mb_strtolower( $word ), $replace_pairs['general'] ) ) {
 
 					switch ( $word ) {
@@ -116,6 +116,11 @@ function convert_pt_ao90( $text = null ) {
 							$words[ $word_key ] = mb_strtoupper( $replace_pairs['general'][ mb_strtolower( $word ) ] );
 							break;
 					}
+				} elseif ( array_key_exists( $word, $replace_pairs['general'] ) ) { // If no generic lowercased key matched, check for exact case match.
+
+					// Exact word case match.
+					$words[ $word_key ] = $replace_pairs['general'][ $word ];
+
 				}
 			}
 		}
