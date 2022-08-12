@@ -59,6 +59,10 @@ Examples:
 
 ## Changelog
 
+### 1.3.1
+
+*   Fix matching for exact words with titlecase on the replace pairs.
+
 ### 1.3.0
 
 *   Rebuild replace pairs with half the size.
