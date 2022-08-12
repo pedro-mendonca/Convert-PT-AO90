@@ -61,7 +61,7 @@ Examples:
 
 ### 1.3.1
 
-*   Fix matching for exact words with titlecase on the replace pairs.
+*   Fix matching for words with exact case on the replace pairs.
 
 ### 1.3.0
 
