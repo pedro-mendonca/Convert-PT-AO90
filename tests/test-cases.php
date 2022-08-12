@@ -119,6 +119,11 @@ A equipa ###SITENAME###
 		// First word starting with accented vowel.
 		'Óptima frase com primeira vogal acentuada.' => 'Ótima frase com primeira vogal acentuada.',
 		'Árctico e árctico.'                         => 'Ártico e ártico.',
+		// Replace-pairs words with first letter uppercase (titlecase).
+		'Antárctida e Antárctida.'                   => 'Antártida e Antártida.',
+		// Word with hyphen with both parts titlecased.
+		'Direcção-Geral e Direcção-Geral'            => 'Direção-Geral e Direção-Geral',
+
 	);
 
 	return $convert_pt_ao90_test_cases;
