@@ -250,12 +250,18 @@ function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) 
 
 		while ( false !== ( $row = fgetcsv( $handle, 1000, $delimiter ) ) ) {
 
-			if ( is_array( $row ) && substr( trim( $row[0] ), 0, 1 ) === $comment_start ) { // Check if row is comment.
+			// Check if is not an empty row.
+			if ( ! isset( $row[0] ) ) {
+
+				// Skip row.
+				continue;
+
+			} elseif ( substr( trim( $row[0] ), 0, 1 ) === $comment_start ) { // Check if row is comment.
 
 				// Add full row to comments array.
 				$file['comments'][] = implode( $delimiter, $row ); // Currently not necessary.
 
-			} elseif ( is_array( $row ) && null !== $row[0] ) { // Check if is not an empty row.
+			} else { // Check if is not an empty row.
 
 				// Add lowercase entry.
 				$file['data'][ strval( $row[0] ) ] = strval( $row[1] );
