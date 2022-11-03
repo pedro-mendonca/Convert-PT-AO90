@@ -123,6 +123,8 @@ A equipa ###SITENAME###
 		'Antárctida e Antárctida.'                   => 'Antártida e Antártida.',
 		// Word with hyphen with both parts titlecased.
 		'Direcção-Geral e Direcção-Geral'            => 'Direção-Geral e Direção-Geral',
+		// Specific new replace pairs.
+		'Um misto de proactivo com paranóide.'       => 'Um misto de proativo com paranoide.',
 
 	);
 
