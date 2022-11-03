@@ -59,6 +59,14 @@ Examples:
 
 ## Changelog
 
+### 1.3.2
+
+*   Fix variable type error.
+*   Add some more replace pairs.
+*   Rebuild replace pairs.
+*   Update dependencies.
+*   Tested only on supported PHP versions (7.4+).
+
 ### 1.3.1
 
 *   Fix matching for words with exact case on the replace pairs.
