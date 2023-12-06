@@ -65,7 +65,10 @@ function convert_pt_ao90_test( $tests = array() ) {
 		if ( $expected !== $test ) {
 			// Print yellow 'E' (Error).
 			echo "\e[33m" . 'E' . "\e[39m";
-			$errors[] = $test;
+			$errors[] = array(
+				'expected' => $expected,
+				'test'     => $test,
+			);
 			continue;
 		}
 
@@ -87,10 +90,17 @@ function convert_pt_ao90_test( $tests = array() ) {
 		echo 'Conversion error(s):' . "\n";
 
 		foreach ( $errors as $error ) {
+			echo "\n";
 			printf(
 				' - %s%s%s' . "\n",
 				"\e[33m",
-				$error,
+				is_null( $error['expected'] ) ? 'NULL' : '"' . $error['expected'] . '"',
+				"\e[39m"
+			);
+			printf(
+				' + %s%s%s' . "\n",
+				"\e[31m",
+				is_null( $error['test'] ) ? 'NULL' : '"' . $error['test'] . '"',
 				"\e[39m"
 			);
 		}
