@@ -125,6 +125,25 @@ A equipa ###SITENAME###
 		'Direcção-Geral e Direcção-Geral'            => 'Direção-Geral e Direção-Geral',
 		// Specific new replace pairs.
 		'Um misto de proactivo com paranóide.'       => 'Um misto de proativo com paranoide.',
+		// Test trailing and ending spaces.
+		'Acção:'                                     => 'Ação:',
+		'Acção: '                                    => 'Ação: ',
+		'Acção:  '                                   => 'Ação:  ',
+		' Acção:'                                    => ' Ação:',
+		'  Acção:'                                   => '  Ação:',
+		' Acção: '                                   => ' Ação: ',
+		'  Acção:  '                                 => '  Ação:  ',
+		'Múltiplas frases. Acção:'                   => 'Múltiplas frases. Ação:',
+		'Múltiplas frases. Acção: '                  => 'Múltiplas frases. Ação: ',
+		// Integer.
+		0                                            => '0',
+		1                                            => '1',
+		2                                            => '2',
+		// Bool.
+		false                                        => '0',
+		true                                         => '1',
+		// Null.
+		null                                         => null,
 
 	);
 
