@@ -59,6 +59,13 @@ Examples:
 
 ## Changelog
 
+### 1.3.3
+
+*   Fix converting strings with trailing space returning null.
+*   Update dependencies.
+*   Add more test cases.
+*   Tested up to PHP 8.3.
+
 ### 1.3.2
 
 *   Fix variable type error.
