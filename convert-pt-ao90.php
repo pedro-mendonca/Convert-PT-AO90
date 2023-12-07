@@ -41,7 +41,10 @@ namespace Convert_PT_AO90;
  *
  * @return string|null   Text converted to Portuguese AO90. Return null if no $text, no replace_pairs or if separation of sentences or words fails.
  */
-function convert_pt_ao90( string $text ) {
+function convert_pt_ao90( $text ) {
+
+	// Stringify string.
+	$text = strval( $text );
 
 	// Separate in sentences. Returns false if preg_split do not split the string.
 	$sentences = get_text_sentences( $text );
@@ -68,7 +71,7 @@ function convert_pt_ao90( string $text ) {
 		$words = get_sentence_words( $sentence );
 
 		// Check if split failed.
-		if ( ! $words ) {
+		if ( $words === false ) {
 			return null;
 		}
 
@@ -189,7 +192,7 @@ function get_text_sentences( string $text ) {
 	$delimiters = '/((?<=[' . implode( $sentence_ending ) . '][' . implode( $after_ending ) . '])|(?=[' . implode( $sentence_ending ) . ']' . $html_tag . '))' . implode( $exceptions ) . '|' . $extra . '/';
 
 	// Separate in sentences. Returns false if preg_split do not split the string.
-	$sentences = preg_split( $delimiters, $text );
+	$sentences = preg_split( $delimiters, $text, 0, PREG_SPLIT_NO_EMPTY );
 
 	// Check if split failed.
 	if ( $sentences === false ) {
@@ -229,7 +232,7 @@ function get_sentence_words( string $sentence ) {
 	$words = preg_split( $delimiters, $sentence, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY );
 
 	// Check if split failed.
-	if ( ! $words ) {
+	if ( $words === false ) {
 		return false;
 	}
 
