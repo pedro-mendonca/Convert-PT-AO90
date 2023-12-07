@@ -75,7 +75,6 @@ function build_replace_pairs_json() {
 	}
 
 	exit( 0 );
-
 }
 
 
@@ -122,7 +121,7 @@ function get_replace_pairs_csv() {
 		$file = csv_to_array( $library_file, '=', '#' );
 
 		// Check if file exist.
-		if ( false === $file ) {
+		if ( $file === false ) {
 			$errors[] = sprintf(
 				'File not found: %s',
 				$library_file
@@ -215,7 +214,6 @@ function get_replace_pairs_csv() {
 	}
 
 	return $result;
-
 }
 
 
@@ -246,9 +244,11 @@ function csv_to_array( $filename = '', $delimiter = ',', $comment_start = '#' ) 
 		'data'     => array(),
 	);
 
-	if ( false !== ( $handle = fopen( $filename, 'r' ) ) ) {
+	$handle = fopen( $filename, 'r' );
 
-		while ( false !== ( $row = fgetcsv( $handle, 1000, $delimiter ) ) ) {
+	if ( $handle !== false ) {
+
+		while ( ( $row = fgetcsv( $handle, 1000, $delimiter ) ) !== false ) { // phpcs:ignore
 
 			// Check if is not an empty row.
 			if ( ! isset( $row[0] ) ) {

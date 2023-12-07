@@ -12,7 +12,7 @@ namespace Convert_PT_AO90;
  *
  * @since 1.2.4
  *
- * @return array<string, string>   Array of text strings to test the conversion.
+ * @return array<int|string, string|null>   Array of text strings to test the conversion.
  */
 function convert_pt_ao90_test_cases() {
 
@@ -139,14 +139,10 @@ A equipa ###SITENAME###
 		0                                            => '0',
 		1                                            => '1',
 		2                                            => '2',
-		// Bool.
-		false                                        => '0',
-		true                                         => '1',
 		// Null.
 		null                                         => null,
 
 	);
 
 	return $convert_pt_ao90_test_cases;
-
 }

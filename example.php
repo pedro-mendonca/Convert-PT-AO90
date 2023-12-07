@@ -42,13 +42,13 @@ require_once __DIR__ . '/tests/test-cases.php';
  *
  * @since 1.0.0
  *
- * @param array<string,string> $texts   Array of texts with expected conversion to Portuguese AO90.
+ * @param array<int|string, string|null> $texts   Array of texts with expected conversion to Portuguese AO90.
  *
  * @return void
  */
 function convert_pt_ao90_diff_table( $texts = null ) {
 
-	if ( null === $texts ) {
+	if ( is_null( $texts ) ) {
 		return;
 	}
 

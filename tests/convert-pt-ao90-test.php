@@ -23,7 +23,7 @@ require_once 'test-cases.php';
  *
  * @since 1.1.0
  *
- * @param array<string, string> $tests   Array of texts to test the conversion.
+ * @param array<int|string, string|null> $tests   Array of texts to test the conversion.
  *
  * @return void
  */
@@ -94,7 +94,7 @@ function convert_pt_ao90_test( $tests = array() ) {
 			printf(
 				' - %s%s%s' . "\n",
 				"\e[33m",
-				is_null( $error['expected'] ) ? 'NULL' : '"' . $error['expected'] . '"',
+				'"' . $error['expected'] . '"',
 				"\e[39m"
 			);
 			printf(
@@ -120,7 +120,6 @@ function convert_pt_ao90_test( $tests = array() ) {
 	echo $result . "\n\n";
 
 	exit( count( $errors ) );
-
 }
 
 

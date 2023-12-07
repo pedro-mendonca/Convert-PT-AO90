@@ -37,15 +37,11 @@ namespace Convert_PT_AO90;
  *
  * @since 1.0.0
  *
- * @param string $text   Text to convert.
+ * @param string|int $text   Text to convert.
  *
  * @return string|null   Text converted to Portuguese AO90. Return null if no $text, no replace_pairs or if separation of sentences or words fails.
  */
-function convert_pt_ao90( $text = null ) {
-
-	if ( null === $text ) {
-		return null;
-	}
+function convert_pt_ao90( string $text ) {
 
 	// Separate in sentences. Returns false if preg_split do not split the string.
 	$sentences = get_text_sentences( $text );
@@ -87,10 +83,10 @@ function convert_pt_ao90( $text = null ) {
 			if ( preg_match( $delimiters, $word ) ) {
 
 				// Increase word count.
-				$word_index++;
+				++$word_index;
 
 				// Check if is not the first word. Check for the first actual word, skips initial empty spaces.
-				if ( 1 < $word_index ) {
+				if ( $word_index > 1 ) {
 
 					// Check word after the first one for case_change replacements, because the first word should not be changed.
 					if ( array_key_exists( $word, $replace_pairs['case_change'] ) ) {
@@ -149,11 +145,7 @@ function convert_pt_ao90( $text = null ) {
  *
  * @return false|array<int, string>   Array of sentences.
  */
-function get_text_sentences( $text = null ) {
-
-	if ( null === $text ) {
-		return false;
-	}
+function get_text_sentences( string $text ) {
 
 	// Sentence endings used to split text into sentences.
 	$sentence_ending = array(
@@ -200,7 +192,7 @@ function get_text_sentences( $text = null ) {
 	$sentences = preg_split( $delimiters, $text );
 
 	// Check if split failed.
-	if ( ! $sentences ) {
+	if ( $sentences === false ) {
 		return false;
 	}
 
@@ -223,11 +215,7 @@ function get_text_sentences( $text = null ) {
  *
  * @return false|array<int, string>   Array of words.
  */
-function get_sentence_words( $sentence = null ) {
-
-	if ( null === $sentence ) {
-		return false;
-	}
+function get_sentence_words( string $sentence ) {
 
 	/**
 	 * Strip HTML because it's not safe to convert HTML tags content. Any text in it should be set on separate strings as variables.
