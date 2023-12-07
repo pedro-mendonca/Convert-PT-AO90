@@ -26,7 +26,7 @@
  * @link       https://github.com/pedro-mendonca/Convert-PT-AO90
  * @author     Pedro Mendonça
  * @copyright  2021 Pedro Mendonça
- * @license    GPLv3
+ * @license    GPL-2.0-or-later
  * @version    1.3.2
  */
 
