@@ -34,14 +34,19 @@
 	<!-- Include the WordPress Coding Standards. -->
 	<rule ref="WordPress">
 
-		<exclude name="WordPress.CodeAnalysis.AssignmentInCondition"/>
 		<exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped"/>
 		<exclude name="WordPress.WP.AlternativeFunctions.file_system_read_fopen"/>
 		<exclude name="WordPress.WP.AlternativeFunctions.file_system_read_fclose"/>
 		<exclude name="WordPress.PHP.DevelopmentFunctions.error_log_print_r"/>
 		<exclude name="Squiz.PHP.DisallowMultipleAssignments.FoundInControlStructure"/>
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_fopen"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_fclose"/>
 
 	</rule>
+
+	<!-- Disallow Yoda conditions in the codebase. -->
+	<rule ref="Generic.ControlStructures.DisallowYodaConditions"/>
 
 	<rule ref="WordPress.WP.DeprecatedFunctions">
 		<properties>

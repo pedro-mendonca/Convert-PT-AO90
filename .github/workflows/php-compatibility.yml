@@ -11,7 +11,7 @@ on:
       # These files configure Composer. Changes could affect the outcome.
       - 'composer.*'
       # This file configures PHP Compatibility. Changes could affect the outcome.
-      - 'phpcompat.xml'
+      - 'phpcompat.xml.dist'
       # Changes to workflow files should always verify all workflows are successful.
       - '.github/workflows/*.yml'
   # Allows you to run this workflow manually from the Actions tab.
