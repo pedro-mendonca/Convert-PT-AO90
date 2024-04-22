@@ -48,11 +48,7 @@
 	<!-- Disallow Yoda conditions in the codebase. -->
 	<rule ref="Generic.ControlStructures.DisallowYodaConditions"/>
 
-	<rule ref="WordPress.WP.DeprecatedFunctions">
-		<properties>
-			<property name="minimum_supported_version" value="4.9"/>
-		</properties>
-	</rule>
+	<config name="minimum_supported_wp_version" value="4.9"/>
 
 	<!--
 	To get the optimal benefits of using WPCS, we should add a couple of custom properties.
