@@ -20,7 +20,7 @@
     "url": "https://github.com/pedro-mendonca/Convert-PT-AO90/issues"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^30.1.0"
+    "@wordpress/scripts": "^30.5.0"
   },
   "scripts": {
     "lint:md:docs": "wp-scripts lint-md-docs",
