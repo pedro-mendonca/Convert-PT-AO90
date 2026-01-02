@@ -25,6 +25,7 @@
     "phpmd/phpmd": ">=2.15",
     "sirbrillig/phpcs-variable-analysis": ">=2.13",
     "szepeviktor/phpstan-wordpress": ">=2.0.3",
+    "phpstan/extension-installer": ">=1.4.3",
     "wp-coding-standards/wpcs": ">=3.3"
   },
   "autoload": {
@@ -35,7 +36,8 @@
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true,
-      "ergebnis/composer-normalize": true
+      "ergebnis/composer-normalize": true,
+      "phpstan/extension-installer": true
     },
     "optimize-autoloader": true
   },
