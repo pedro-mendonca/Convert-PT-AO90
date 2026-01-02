@@ -59,6 +59,12 @@ Examples:
 
 ## Changelog
 
+### 1.3.4
+
+*   Harden type checking of replace pairs.
+*   Update dependencies.
+*   Tested up to PHP 8.4 and 8.5.
+
 ### 1.3.3
 
 *   Fix converting strings with trailing space returning null.
