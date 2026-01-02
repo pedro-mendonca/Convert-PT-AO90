@@ -253,11 +253,7 @@ function get_sentence_words( string $sentence ) {
  *
  * @param string $filename   Path to the JSON file.
  *
- * @return false|array{
- *             case_change: array<string, string>,
- *             general: array<string, string>,
- *         }
- *         Multi-dimensional array replace pairs with both types 'general' and 'case_change'. Return false if files not found.
+ * @return false|non-empty-array<'case_change'|'general', array<string, string>>   Multi-dimensional array replace pairs with both types 'general' and 'case_change'. Return false if files not found.
  */
 function get_replace_pairs( $filename = '' ) {
 
@@ -283,18 +279,28 @@ function get_replace_pairs( $filename = '' ) {
 		return false;
 	}
 
-	if ( ! isset( $replace_pairs['case_change'] ) || ! is_array( $replace_pairs['case_change'] ) ) {
-		return false;
-	}
-
-	if ( ! isset( $replace_pairs['general'] ) || ! is_array( $replace_pairs['general'] ) ) {
-		return false;
-	}
-
-	$result = array(
-		'case_change' => $replace_pairs['case_change'],
-		'general'     => $replace_pairs['general'],
+	$replace_pair_types = array(
+		'case_change',
+		'general',
 	);
+
+	$result = array();
+
+	foreach ( $replace_pair_types as $type ) {
+
+		$result[ $type ] = array();
+
+		if ( ! isset( $replace_pairs[ $type ] ) || ! is_array( $replace_pairs[ $type ] ) ) {
+			return false;
+		}
+
+		foreach ( $replace_pairs[ $type ] as $key => $value ) {
+			if ( ! is_string( $key ) || ! is_string( $value ) ) {
+				continue;
+			}
+			$result[ $type ][ $key ] = $value;
+		}
+	}
 
 	return $result;
 }
