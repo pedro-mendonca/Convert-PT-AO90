@@ -13,17 +13,19 @@
     "php": "^7.4 || ^8.0"
   },
   "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": "^1.2.0",
-    "wp-coding-standards/wpcs": "^3.3.0",
-    "phpcompatibility/phpcompatibility-wp": "^2.1.8",
-    "phpmd/phpmd": "^2.15.0",
-    "szepeviktor/phpstan-wordpress": "^1.3.5",
-    "sirbrillig/phpcs-variable-analysis": "^2.13.0"
+    "dealerdirect/phpcodesniffer-composer-installer": ">=1.2",
+    "ergebnis/composer-normalize": ">=2.48.2",
+    "wp-coding-standards/wpcs": ">=3.3",
+    "phpcompatibility/phpcompatibility-wp": ">=2.1.8",
+    "phpmd/phpmd": ">=2.15",
+    "szepeviktor/phpstan-wordpress": ">=2.0.3",
+    "sirbrillig/phpcs-variable-analysis": ">=2.13"
   },
   "config": {
     "optimize-autoloader": true,
     "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "ergebnis/composer-normalize": true
     }
   },
   "autoload": {
