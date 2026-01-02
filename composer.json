@@ -23,9 +23,9 @@
     "ergebnis/composer-normalize": ">=2.48.2",
     "phpcompatibility/phpcompatibility-wp": ">=2.1.8",
     "phpmd/phpmd": ">=2.15",
+    "phpstan/extension-installer": ">=1.4.3",
     "sirbrillig/phpcs-variable-analysis": ">=2.13",
     "szepeviktor/phpstan-wordpress": ">=2.0.3",
-    "phpstan/extension-installer": ">=1.4.3",
     "wp-coding-standards/wpcs": ">=3.3"
   },
   "autoload": {
@@ -39,7 +39,10 @@
       "ergebnis/composer-normalize": true,
       "phpstan/extension-installer": true
     },
-    "optimize-autoloader": true
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "7.4.33"
+    }
   },
   "scripts": {
     "build": [
