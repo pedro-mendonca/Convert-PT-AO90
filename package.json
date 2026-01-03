@@ -1,6 +1,6 @@
 {
   "requires": true,
-  "lockfileVersion": 1,
+  "lockfileVersion": 3,
   "name": "convert-pt-ao90",
   "version": "1.3.4",
   "description": "Open source language tool to convert Portuguese to AO90.",
