@@ -11,7 +11,7 @@ on:
       # These files configure Composer. Changes could affect the outcome.
       - 'composer.*'
       # This file configures PHPStan. Changes could affect the outcome.
-      - 'phpstan.neon'
+      - 'phpstan.neon.dist'
       # Changes to workflow files should always verify all workflows are successful.
       - '.github/workflows/*.yml'
   # Allows you to run this workflow manually from the Actions tab.
@@ -66,4 +66,4 @@ jobs:
         run: echo "${PWD}/vendor/bin" >> $GITHUB_PATH
 
       - name: Run PHPStan static analysis (PHP ${{ matrix.php-versions }})
-        run: phpstan analyse -c phpstan.neon --error-format=checkstyle --memory-limit=1G | cs2pr
+        run: phpstan analyse -c phpstan.neon.dist --error-format=checkstyle --memory-limit=1G | cs2pr
