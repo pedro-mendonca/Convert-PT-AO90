@@ -19,14 +19,15 @@
     "php": "^7.4 || ^8.0"
   },
   "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": ">=1.2",
-    "ergebnis/composer-normalize": ">=2.48.2",
-    "phpcompatibility/phpcompatibility-wp": ">=2.1.8",
-    "phpmd/phpmd": ">=2.15",
-    "phpstan/extension-installer": ">=1.4.3",
-    "sirbrillig/phpcs-variable-analysis": ">=2.13",
-    "szepeviktor/phpstan-wordpress": ">=2.0.3",
-    "wp-coding-standards/wpcs": ">=3.3"
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.2",
+    "ergebnis/composer-normalize": "^2.48.2",
+    "phpcompatibility/phpcompatibility-wp": "^2.1.8",
+    "phpmd/phpmd": "^2.15",
+    "phpstan/extension-installer": "^1.4.3",
+    "phpstan/phpstan": ">=2.1.33",
+    "sirbrillig/phpcs-variable-analysis": "^2.13",
+    "szepeviktor/phpstan-wordpress": "^2.0.3",
+    "wp-coding-standards/wpcs": "^3.3"
   },
   "autoload": {
     "files": [
@@ -41,7 +42,7 @@
     },
     "optimize-autoloader": true,
     "platform": {
-      "php": "7.4.33"
+      "php": "7.4"
     }
   },
   "scripts": {
