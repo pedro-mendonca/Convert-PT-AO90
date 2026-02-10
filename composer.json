@@ -20,11 +20,11 @@
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^1.2",
-    "ergebnis/composer-normalize": "^2.49.0",
+    "ergebnis/composer-normalize": "^2.50.0",
     "phpcompatibility/phpcompatibility-wp": "^2.1.8",
     "phpmd/phpmd": "^2.15",
     "phpstan/extension-installer": "^1.4.3",
-    "phpstan/phpstan": ">=2.1.37",
+    "phpstan/phpstan": ">=2.1.38",
     "sirbrillig/phpcs-variable-analysis": "^2.13",
     "szepeviktor/phpstan-wordpress": "^2.0.3",
     "wp-coding-standards/wpcs": "^3.3"
