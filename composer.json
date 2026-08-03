@@ -25,7 +25,7 @@
     "phpmd/phpmd": "^2.15",
     "phpstan/extension-installer": "^1.4.3",
     "phpstan/phpstan": ">=2.1.38",
-    "sirbrillig/phpcs-variable-analysis": "^2.13",
+    "sirbrillig/phpcs-variable-analysis": "^3.0",
     "szepeviktor/phpstan-wordpress": "^2.0.3",
     "wp-coding-standards/wpcs": "^3.3"
   },
