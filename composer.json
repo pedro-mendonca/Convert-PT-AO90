@@ -19,15 +19,15 @@
     "php": "^7.4 || ^8.0"
   },
   "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": "^1.2",
-    "ergebnis/composer-normalize": "^2.50.0",
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.2.1",
+    "ergebnis/composer-normalize": "^2.54.0",
     "phpcompatibility/phpcompatibility-wp": "^2.1.8",
     "phpmd/phpmd": "^2.15",
     "phpstan/extension-installer": "^1.4.3",
-    "phpstan/phpstan": ">=2.1.38",
+    "phpstan/phpstan": ">=2.2.16",
     "sirbrillig/phpcs-variable-analysis": "^3.0",
-    "szepeviktor/phpstan-wordpress": "^2.0.3",
-    "wp-coding-standards/wpcs": "^3.3"
+    "szepeviktor/phpstan-wordpress": "^2.0.4",
+    "wp-coding-standards/wpcs": "^3.4.1"
   },
   "autoload": {
     "files": [
