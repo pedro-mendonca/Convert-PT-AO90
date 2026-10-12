@@ -24,7 +24,7 @@
     "phpcompatibility/phpcompatibility-wp": "^2.1.8",
     "phpmd/phpmd": "^2.15",
     "phpstan/extension-installer": "^1.4.3",
-    "phpstan/phpstan": ">=2.2.16",
+    "phpstan/phpstan": "^2.3.1",
     "sirbrillig/phpcs-variable-analysis": "^3.0",
     "szepeviktor/phpstan-wordpress": "^2.0.4",
     "wp-coding-standards/wpcs": "^3.4.1"
